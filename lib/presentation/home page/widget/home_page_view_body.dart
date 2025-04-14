@@ -5,6 +5,7 @@ import 'package:lawyer_app/presentation/home%20page/widget/home_page_item.dart'
 import 'package:lawyer_app/untility/app_assests.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 import 'package:lawyer_app/untility/router.dart' show AppRouter;
+import 'package:go_router/go_router.dart';
 
 class HomePageViewBody extends StatelessWidget {
   const HomePageViewBody({super.key});
@@ -73,7 +74,7 @@ class HomePageViewBody extends StatelessWidget {
         actions: [
           InkWell(
             // onTap: () {
-            //   GoRouter.of(context).push(AppRouter.kNotificationView);
+            //   GoRouter.of(context).push(AppRouter.kCheckView);
             // },
             child: Icon(Icons.notifications, color: Colors.black),
           ),
@@ -88,13 +89,13 @@ class HomePageViewBody extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
             child: InkWell(
-              // onTap: () {
-              //   if (item["imageIcon"] == AppAssets.negotiationICon) {
-              //     GoRouter.of(
-              //       context,
-              //     ).push(AppRouter.kNegotiationNotificationView);
-              //   }
-              // },
+              onTap: () {
+                if (item["imageIcon"] == AppAssets.business) {
+                  GoRouter.of(context).push(AppRouter.kCheckView);
+                } else if (item["imageIcon"] == AppAssets.law) {
+                  GoRouter.of(context).push(AppRouter.kHelpView);
+                }
+              },
               child: HomePageItem(
                 mainText: item["mainText"],
                 secondText: item["secondText"],
