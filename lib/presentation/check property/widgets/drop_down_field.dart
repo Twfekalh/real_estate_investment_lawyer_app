@@ -53,40 +53,51 @@ class _DropdownFieldState extends State<DropdownField> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                value: selectedItem,
-                onChanged: (value) {
-                  setState(() {
-                    selectedItem = value!;
-                  });
-                  widget.onChanged(value!);
-                },
-                items:
-                    widget.items
-                        .map(
-                          (item) => DropdownMenuItem(
-                            value: item,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                item,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                icon: const Icon(Icons.keyboard_arrow_up, size: 18),
-                dropdownColor: Colors.white,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 12),
+            child: Text(
+              selectedItem,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w400,
               ),
             ),
+
+            // child: DropdownButtonHideUnderline(
+            //   child: DropdownButton<String>(
+            //     value: selectedItem,
+            //     onChanged: (value) {
+            //       setState(() {
+            //         selectedItem = value!;
+            //       });
+            //       widget.onChanged(value!);
+            //     },
+            //     items:
+            //         widget.items
+            //             .map(
+            //               (item) => DropdownMenuItem(
+            //                 value: item,
+            //                 child: Padding(
+            //                   padding: const EdgeInsets.only(left: 8.0),
+            //                   child: Text(
+            //                     item,
+            //                     style: TextStyle(
+            //                       color: Colors.black,
+            //                       fontSize: 14,
+            //                       fontFamily: 'Inter',
+            //                       fontWeight: FontWeight.w400,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             )
+            //             .toList(),
+            //     icon: const Icon(Icons.keyboard_arrow_up, size: 18),
+            //     dropdownColor: Colors.white,
+            //   ),
+            // ),
           ),
         ],
       ),

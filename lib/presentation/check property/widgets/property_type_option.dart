@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PropertyTypeOption extends StatelessWidget {
   final String label;
   final String? groupValue;
-  final ValueChanged<String?> onChanged;
+  final ValueChanged<String?>? onChanged;
 
   const PropertyTypeOption({
     super.key,

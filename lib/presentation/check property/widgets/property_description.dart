@@ -18,7 +18,7 @@ class _PropertyDescriptionWidgetState extends State<PropertyDescriptionWidget> {
   int overlook = 4;
   int balconySize = 100;
 
-  final List<String> decorations = ['deluxe', 'modern', 'classic'];
+  final List<String> decorations = ['deluxe'];
   final List<String> kitchenTypes = ['western', 'open', 'closed'];
   final List<String> flooringTypes = ['granite', 'marble', 'wood'];
   final List<String> paintingTypes = ['regular', 'matte', 'glossy'];
@@ -47,26 +47,13 @@ class _PropertyDescriptionWidgetState extends State<PropertyDescriptionWidget> {
           ),
         ),
         // const SizedBox(height: 5),
-        NumberPicker(
-          label: 'Space:',
-          value: space,
-          onChanged: (val) => setState(() => space = val),
-          suffix: 'm²',
-        ),
-        NumberPicker(
-          label: 'Number of rooms:',
-          value: rooms,
-          onChanged: (val) => setState(() => rooms = val),
-        ),
-        NumberPicker(
-          label: 'Number of bathrooms:',
-          value: bathrooms,
-          onChanged: (val) => setState(() => bathrooms = val),
-        ),
+        NumberPicker(label: 'Space:', value: space, suffix: 'm²'),
+        NumberPicker(label: 'Number of rooms:', value: rooms),
+        NumberPicker(label: 'Number of bathrooms:', value: bathrooms),
         NumberPicker(
           label: 'Property age:',
           value: propertyAge,
-          onChanged: (val) => setState(() => propertyAge = val),
+
           suffix: 'year',
         ),
         DropdownField(
@@ -87,17 +74,8 @@ class _PropertyDescriptionWidgetState extends State<PropertyDescriptionWidget> {
           selectedValue: selectedFlooring,
           onChanged: (val) => setState(() => selectedFlooring = val),
         ),
-        NumberPicker(
-          label: 'Overlook from 10:',
-          value: overlook,
-          onChanged: (val) => setState(() => overlook = val),
-        ),
-        NumberPicker(
-          label: 'Balcony size:',
-          value: balconySize,
-          onChanged: (val) => setState(() => balconySize = val),
-          suffix: 'm²',
-        ),
+        NumberPicker(label: 'Overlook from 10:', value: overlook),
+        NumberPicker(label: 'Balcony size:', value: balconySize, suffix: 'm²'),
         DropdownField(
           label: 'Painting type:',
           items: paintingTypes,

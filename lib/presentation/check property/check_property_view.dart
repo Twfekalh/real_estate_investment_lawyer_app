@@ -53,44 +53,93 @@ class CheckPropertyView extends StatelessWidget {
                     spacing: 10,
                     children: [
                       SaleEstateContainer(
-                        height: 309,
+                        height: 90,
                         child: PropertyTypeWidget(),
                       ),
+
                       const SizedBox(height: 10),
                       SaleEstateContainer(
                         height: 575,
                         child: PropertyDescriptionWidget(),
                       ),
-                      const SizedBox(height: 10),
-
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 33.0),
-                      //   child: Row(
-                      //     children: [
-                      //       CheckMarkBox(),
-                      //       SizedBox(width: 10),
-                      //       Text(
-                      //         'accept all ',
-                      //         style: TextStyle(
-                      //           color: Colors.black,
-                      //           fontSize: 12,
-                      //           fontFamily: 'Inter',
-                      //           fontWeight: FontWeight.w400,
-                      //         ),
-                      //       ),
-                      //       Text(
-                      //         'conditions',
-                      //         style: TextStyle(
-                      //           color: const Color(0xFF22832D),
-                      //           fontSize: 12,
-                      //           fontFamily: 'Inter',
-                      //           fontWeight: FontWeight.w400,
-                      //           decoration: TextDecoration.underline,
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
+                      SaleEstateContainer(
+                        height: 150,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Position Information:',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'State:',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Container(
+                                    width: 107,
+                                    height: 26.63,
+                                    padding: const EdgeInsets.only(left: 12),
+                                    alignment: Alignment.centerLeft,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Text(
+                                      'Damascus',
+                                      style: TextStyle(fontSize: 14),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Exact Position:',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Container(
+                                      height: 50,
+                                      padding: const EdgeInsets.all(8),
+                                      alignment: Alignment.topLeft,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: const Text(
+                                        'Near Omayyad Square, Building 12, Floor 3',
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Padding(
                         padding: EdgeInsets.only(top: 20, bottom: 8.0),
                         child: CustomSendButton(
