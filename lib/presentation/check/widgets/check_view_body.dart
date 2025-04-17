@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 import 'package:lawyer_app/untility/router.dart' show AppRouter;
 import 'pressable_button.dart';
@@ -24,7 +25,23 @@ class CheckViewBody extends StatelessWidget {
               color: AppColors.brightRed,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                builder:
+                    (context) => const Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 20,
+                        left: 16,
+                        right: 16,
+                        top: 12,
+                      ),
+                      child: RefuseReasonBottomSheet(),
+                    ),
+              );
             },
           ),
         ],
