@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/help/widgets/help_view_item.dart';
 import 'package:lawyer_app/untility/app_color.dart';
+import 'package:lawyer_app/untility/router.dart';
 
 class HelpView extends StatelessWidget {
   const HelpView({super.key});
@@ -29,10 +30,20 @@ class HelpView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 40),
-            HelpViewItem(text: 'Common Questions'),
-            SizedBox(height: 20),
-            HelpViewItem(text: 'Contact With Us'),
+            const SizedBox(height: 40),
+            HelpViewItem(
+              text: 'Common Questions',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kCommonQuestion);
+              },
+            ),
+            const SizedBox(height: 20),
+            HelpViewItem(
+              text: 'Contact With Us',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kCommonQuestion);
+              },
+            ),
           ],
         ),
       ),

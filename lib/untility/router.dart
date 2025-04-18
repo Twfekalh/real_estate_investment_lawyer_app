@@ -8,6 +8,7 @@ import 'package:lawyer_app/presentation/check%20property/check_property_view.dar
 import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
+import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
 import 'package:lawyer_app/presentation/profile/profile_view.dart';
 
@@ -22,6 +23,7 @@ abstract class AppRouter {
   static const kCheckPropertyView = '/CheckPropertyView';
   static const kRefuseReasonBottomSheet = '/RefuseReasonBottomSheet';
   static const kCheckDocumentView = '/CheckDocumentView';
+  static const kCommonQuestion = '/CommonQuestion';
 
   static final router = GoRouter(
     routes: [
@@ -60,6 +62,10 @@ abstract class AppRouter {
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(path: kHelpView, builder: (context, state) => const HelpView()),
+      GoRoute(
+        path: kCommonQuestion,
+        builder: (context, state) => const CommonQuestion(),
+      ),
     ],
   );
 }
