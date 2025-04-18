@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/presentation/auth/buy/buy_view.dart';
 import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
 import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
 import 'package:lawyer_app/presentation/auth/signup_view.dart';
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
-
 import 'package:lawyer_app/presentation/check%20property/check_property_view.dart';
 import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
@@ -24,6 +24,7 @@ abstract class AppRouter {
   static const kRefuseReasonBottomSheet = '/RefuseReasonBottomSheet';
   static const kCheckDocumentView = '/CheckDocumentView';
   static const kCommonQuestion = '/CommonQuestion';
+  static const kBayView = '/BayView';
 
   static final router = GoRouter(
     routes: [
@@ -40,6 +41,7 @@ abstract class AppRouter {
         path: kRefuseReasonBottomSheet,
         builder: (context, state) => const RefuseReasonBottomSheet(),
       ),
+      GoRoute(path: kBayView, builder: (context, state) => const BayView()),
       GoRoute(path: kCheckView, builder: (context, state) => const CheckView()),
       GoRoute(
         path: kCheckPropertyView,

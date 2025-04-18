@@ -31,7 +31,14 @@ class CustomDrawer extends StatelessWidget {
               GoRouter.of(context).push(AppRouter.kProfileView);
             },
           ),
-
+          DrawerItem(
+            icon: Icons.history,
+            title: 'History',
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kProfileView);
+            },
+          ),
+          //highlight_off_sharp
           DrawerItem(
             icon: Icons.help,
             title: 'Help',

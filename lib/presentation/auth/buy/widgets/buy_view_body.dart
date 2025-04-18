@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/presentation/auth/buy/widgets/image_bay_section.dart';
+
 import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/untility/app_color.dart';
-import 'package:lawyer_app/untility/router.dart' show AppRouter;
-import 'pressable_button.dart';
 
-class CheckViewBody extends StatelessWidget {
-  const CheckViewBody({super.key});
+class BayViewBody extends StatelessWidget {
+  BayViewBody({super.key});
+  final List<String> idImages = List.filled(2, 'assets/images/sample.png');
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CheckViewBody extends StatelessWidget {
             GoRouter.of(context).pop();
           },
         ),
-        title: const Text('check', style: TextStyle(color: Colors.black)),
+        title: const Text('Bay', style: TextStyle(color: Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -54,7 +55,6 @@ class CheckViewBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           children: [
-            /// بطاقة بيانات الشخص
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -90,30 +90,8 @@ class CheckViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-
-            /// زر Description Information مع تغيير اللون عند الضغط
-            PressableButton(
-              text: 'Description Information',
-              initialColor: AppColors.lightPurple, // اللون الابتدائي
-              pressedColor:
-                  AppColors.lightPurple100, // اللون عند الضغط (الموف الفاتح)
-              onTap: () {
-                // الانتقال إلى واجهة التحقق من الممتلكات
-                GoRouter.of(context).push(AppRouter.kCheckPropertyView);
-              },
-            ),
-            const SizedBox(height: 30),
-
-            /// زر Legal Information مع تغيير اللون عند الضغط
-            PressableButton(
-              text: 'Legal Information',
-              initialColor: AppColors.lightPurple,
-              pressedColor: AppColors.lightPurple100,
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.kBayView);
-              },
-            ),
-
+            ImageBaySection(title: "id images (2 faces):", images: idImages),
+            const SizedBox(height: 20),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.only(bottom: 24.0),
