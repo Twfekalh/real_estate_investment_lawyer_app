@@ -81,7 +81,7 @@ class CheckViewBody extends StatelessWidget {
                   SizedBox(height: 6),
                   Text(
                     'Location : Damascus/Mazeh/Alhoda Circle/112 Building/4th floor.',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),
