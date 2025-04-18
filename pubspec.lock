@@ -416,6 +416,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+<<<<<<< HEAD
   photo_view:
     dependency: "direct main"
     description:
@@ -424,6 +425,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.0"
+=======
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
   plugin_platform_interface:
     dependency: transitive
     description:

@@ -19,9 +19,15 @@ class _PropertyDescriptionWidgetState extends State<PropertyDescriptionWidget> {
   int balconySize = 100;
 
   final List<String> decorations = ['deluxe'];
+<<<<<<< HEAD
   final List<String> kitchenTypes = ['western'];
   final List<String> flooringTypes = ['granite'];
   final List<String> paintingTypes = ['regular'];
+=======
+  final List<String> kitchenTypes = ['western', 'open', 'closed'];
+  final List<String> flooringTypes = ['granite', 'marble', 'wood'];
+  final List<String> paintingTypes = ['regular', 'matte', 'glossy'];
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 
   String selectedDecoration = 'deluxe';
   String selectedKitchen = 'western';
@@ -46,7 +52,11 @@ class _PropertyDescriptionWidgetState extends State<PropertyDescriptionWidget> {
             ),
           ),
         ),
+<<<<<<< HEAD
 
+=======
+        // const SizedBox(height: 5),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
         NumberPicker(label: 'Space:', value: space, suffix: 'm²'),
         NumberPicker(label: 'Number of rooms:', value: rooms),
         NumberPicker(label: 'Number of bathrooms:', value: bathrooms),

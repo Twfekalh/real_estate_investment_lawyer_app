@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:lawyer_app/untility/app_assests.dart';
+=======
+import 'package:lawyer_app/untility/app_assests.dart' show AppAssets;
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 
 class ProfileInfoRow extends StatelessWidget {
   final String icon;

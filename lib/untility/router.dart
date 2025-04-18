@@ -2,8 +2,11 @@ import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
 import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
 import 'package:lawyer_app/presentation/auth/signup_view.dart';
+<<<<<<< HEAD
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
 
+=======
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 import 'package:lawyer_app/presentation/check%20property/check_property_view.dart';
 import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
@@ -21,7 +24,10 @@ abstract class AppRouter {
   static const kCheckView = '/CheckView';
   static const kCheckPropertyView = '/CheckPropertyView';
   static const kRefuseReasonBottomSheet = '/RefuseReasonBottomSheet';
+<<<<<<< HEAD
   static const kCheckDocumentView = '/CheckDocumentView';
+=======
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 
   static final router = GoRouter(
     routes: [
@@ -44,10 +50,13 @@ abstract class AppRouter {
         builder: (context, state) => const CheckPropertyView(),
       ),
       GoRoute(
+<<<<<<< HEAD
         path: kCheckDocumentView,
         builder: (context, state) => CheckDocumentView(),
       ),
       GoRoute(
+=======
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
         path: kResetPasswordView,
         builder: (context, state) => const ResetPasswordView(),
       ),

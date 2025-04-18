@@ -62,26 +62,46 @@ class CheckViewBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
+<<<<<<< HEAD
                   Text('Name : Ali Emad Mossa', style: TextStyle(fontSize: 16)),
                   SizedBox(height: 6),
                   Text(
                     'Born : 23/7/1990 Latakia',
                     style: TextStyle(fontSize: 16),
+=======
+                  Text('Name : Ali Emad Mossa', style: TextStyle(fontSize: 14)),
+                  SizedBox(height: 6),
+                  Text(
+                    'Born : 23/7/1990 Latakia',
+                    style: TextStyle(fontSize: 14),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                   ),
                   SizedBox(height: 6),
                   Text(
                     'ID number : 00995544223311',
+<<<<<<< HEAD
                     style: TextStyle(fontSize: 16),
+=======
+                    style: TextStyle(fontSize: 14),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                   ),
                   SizedBox(height: 6),
                   Text(
                     'Property type : apartment',
+<<<<<<< HEAD
                     style: TextStyle(fontSize: 16),
+=======
+                    style: TextStyle(fontSize: 14),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                   ),
                   SizedBox(height: 6),
                   Text(
                     'Location : Damascus/Mazeh/Alhoda Circle/112 Building/4th floor.',
+<<<<<<< HEAD
                     style: TextStyle(fontSize: 20),
+=======
+                    style: TextStyle(fontSize: 14),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                   ),
                 ],
               ),
@@ -99,7 +119,11 @@ class CheckViewBody extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.kCheckPropertyView);
               },
             ),
+<<<<<<< HEAD
             const SizedBox(height: 30),
+=======
+            const SizedBox(height: 16),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 
             /// زر Legal Information مع تغيير اللون عند الضغط
             PressableButton(
@@ -107,11 +131,16 @@ class CheckViewBody extends StatelessWidget {
               initialColor: AppColors.lightPurple,
               pressedColor: AppColors.lightPurple100,
               onTap: () {
+<<<<<<< HEAD
+=======
+                // انتقل إلى الصفحة القانونية أو أي صفحة أخرى
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                 GoRouter.of(context).push(AppRouter.kCheckPropertyView);
               },
             ),
 
             const Spacer(),
+<<<<<<< HEAD
             Padding(
               padding: const EdgeInsets.only(bottom: 24.0),
               child: Center(
@@ -142,6 +171,25 @@ class CheckViewBody extends StatelessWidget {
                     ),
                   ),
                 ),
+=======
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.lightPurple100,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Done',
+                  style: TextStyle(fontSize: 16, color: Colors.black),
+                ),
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
               ),
             ),
           ],

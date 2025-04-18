@@ -6,6 +6,7 @@ class PropertyTypeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,6 +35,34 @@ class PropertyTypeWidget extends StatelessWidget {
           ),
         ],
       ),
+=======
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(left: 12.0, top: 12.0),
+          child: Text(
+            'Property Type:',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: const [
+            PropertyTypeOption(
+              label: 'Villa',
+              groupValue: 'Villa',
+              onChanged: null,
+            ),
+          ],
+        ),
+      ],
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
     );
   }
 }

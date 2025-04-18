@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+<<<<<<< HEAD
 import 'package:lawyer_app/presentation/profile/widget/profile_info_row.dart';
 import 'package:lawyer_app/untility/app_assests.dart';
+=======
+import 'package:lawyer_app/presentation/profile/widget/profile_info_row.dart'
+    show ProfileInfoRow;
+import 'package:lawyer_app/untility/app_assests.dart' show AppAssets;
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 import 'package:lawyer_app/untility/app_color.dart';
 
 class ProfileView extends StatelessWidget {
@@ -63,7 +69,11 @@ class ProfileView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+<<<<<<< HEAD
                       'Ali Mossa',
+=======
+                      'twfek alhmada',
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,

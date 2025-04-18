@@ -34,7 +34,10 @@ dependencies:
   flutter_svg: ^2.0.17
   flutter_zoom_drawer: ^3.2.0
   go_router: ^14.8.1
+<<<<<<< HEAD
   photo_view: ^0.15.0
+=======
+>>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 
 dev_dependencies:
   carousel_slider: ^5.0.0
