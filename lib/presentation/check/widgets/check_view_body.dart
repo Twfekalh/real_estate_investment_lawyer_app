@@ -107,7 +107,6 @@ class CheckViewBody extends StatelessWidget {
               initialColor: AppColors.lightPurple,
               pressedColor: AppColors.lightPurple100,
               onTap: () {
-                // انتقل إلى الصفحة القانونية أو أي صفحة أخرى
                 GoRouter.of(context).push(AppRouter.kCheckPropertyView);
               },
             ),

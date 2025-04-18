@@ -6,6 +6,7 @@ import 'package:lawyer_app/presentation/check%20property/widgets/property_descri
 import 'package:lawyer_app/presentation/check%20property/widgets/property_type_widget.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/sales_estate_container.dart';
 import 'package:lawyer_app/untility/app_color.dart';
+import 'package:lawyer_app/untility/router.dart';
 
 class CheckPropertyView extends StatelessWidget {
   const CheckPropertyView({super.key});
@@ -144,7 +145,11 @@ class CheckPropertyView extends StatelessWidget {
                         padding: EdgeInsets.only(top: 20, bottom: 8.0),
                         child: CustomSendButton(
                           buttonName: 'Confirm',
-                          onTap: () {},
+                          onTap: () {
+                            GoRouter.of(
+                              context,
+                            ).push(AppRouter.kCheckDocumentView);
+                          },
                         ),
                       ),
                     ],

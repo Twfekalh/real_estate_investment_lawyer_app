@@ -64,40 +64,6 @@ class _DropdownFieldState extends State<DropdownField> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-
-            // child: DropdownButtonHideUnderline(
-            //   child: DropdownButton<String>(
-            //     value: selectedItem,
-            //     onChanged: (value) {
-            //       setState(() {
-            //         selectedItem = value!;
-            //       });
-            //       widget.onChanged(value!);
-            //     },
-            //     items:
-            //         widget.items
-            //             .map(
-            //               (item) => DropdownMenuItem(
-            //                 value: item,
-            //                 child: Padding(
-            //                   padding: const EdgeInsets.only(left: 8.0),
-            //                   child: Text(
-            //                     item,
-            //                     style: TextStyle(
-            //                       color: Colors.black,
-            //                       fontSize: 14,
-            //                       fontFamily: 'Inter',
-            //                       fontWeight: FontWeight.w400,
-            //                     ),
-            //                   ),
-            //                 ),
-            //               ),
-            //             )
-            //             .toList(),
-            //     icon: const Icon(Icons.keyboard_arrow_up, size: 18),
-            //     dropdownColor: Colors.white,
-            //   ),
-            // ),
           ),
         ],
       ),
