@@ -6,10 +6,7 @@ import 'package:lawyer_app/presentation/check%20property/widgets/property_descri
 import 'package:lawyer_app/presentation/check%20property/widgets/property_type_widget.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/sales_estate_container.dart';
 import 'package:lawyer_app/untility/app_color.dart';
-<<<<<<< HEAD
 import 'package:lawyer_app/untility/router.dart';
-=======
->>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
 
 class CheckPropertyView extends StatelessWidget {
   const CheckPropertyView({super.key});
@@ -61,11 +58,7 @@ class CheckPropertyView extends StatelessWidget {
                         child: PropertyTypeWidget(),
                       ),
 
-<<<<<<< HEAD
                       const SizedBox(height: 0),
-=======
-                      const SizedBox(height: 10),
->>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                       SaleEstateContainer(
                         height: 575,
                         child: PropertyDescriptionWidget(),
@@ -151,17 +144,12 @@ class CheckPropertyView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 20, bottom: 8.0),
                         child: CustomSendButton(
-<<<<<<< HEAD
                           buttonName: 'Confirm',
                           onTap: () {
                             GoRouter.of(
                               context,
                             ).push(AppRouter.kCheckDocumentView);
                           },
-=======
-                          buttonName: 'Done',
-                          onTap: () {},
->>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
                         ),
                       ),
                     ],

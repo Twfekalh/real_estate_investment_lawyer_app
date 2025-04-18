@@ -66,7 +66,7 @@ packages:
     source: hosted
     version: "0.3.4+2"
   cupertino_icons:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: cupertino_icons
       sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
@@ -154,10 +154,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_svg
-      sha256: c200fd79c918a40c5cd50ea0877fa13f81bdaf6f0a5d3dbcc2a13e3285d6aa1b
+      sha256: d44bf546b13025ec7353091516f6881f1d4c633993cb109c3916c3a0159dadf1
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.17"
+    version: "2.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -416,7 +416,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
-<<<<<<< HEAD
   photo_view:
     dependency: "direct main"
     description:
@@ -425,8 +424,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.0"
-=======
->>>>>>> ba8e2bf461697988166c0addbeb727b98ba3166a
   plugin_platform_interface:
     dependency: transitive
     description:
