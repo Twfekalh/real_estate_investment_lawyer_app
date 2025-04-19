@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/profile/widget/profile_info_row.dart';
 import 'package:lawyer_app/untility/app_assests.dart';
 import 'package:lawyer_app/untility/app_color.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -74,7 +75,9 @@ class ProfileView extends StatelessWidget {
                     Text(
                       'joined in 2 April 2020',
                       style: TextStyle(
-                        color: Colors.black.withValues(alpha: 135),
+                        // ignore: deprecated_member_use
+                        color: Colors.black.withOpacity(0.53),
+
                         fontSize: 13,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,

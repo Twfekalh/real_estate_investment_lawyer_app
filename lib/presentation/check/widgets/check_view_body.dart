@@ -106,11 +106,11 @@ class CheckViewBody extends StatelessWidget {
 
             /// زر Legal Information مع تغيير اللون عند الضغط
             PressableButton(
-              text: 'Legal Information',
+              text: 'Check Documents',
               initialColor: AppColors.lightPurple,
               pressedColor: AppColors.lightPurple100,
               onTap: () {
-                GoRouter.of(context).push(AppRouter.kBayView);
+                GoRouter.of(context).push(AppRouter.kCheckDocumentView);
               },
             ),
 

@@ -146,9 +146,7 @@ class CheckPropertyView extends StatelessWidget {
                         child: CustomSendButton(
                           buttonName: 'Confirm',
                           onTap: () {
-                            GoRouter.of(
-                              context,
-                            ).push(AppRouter.kCheckDocumentView);
+                            GoRouter.of(context).push(AppRouter.kCheckView);
                           },
                         ),
                       ),

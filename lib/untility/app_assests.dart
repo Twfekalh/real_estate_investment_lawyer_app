@@ -8,4 +8,5 @@ class AppAssets {
   static const negotiationICon = "assets/images/negotiation.png";
   static const business = "assets/images/business.png";
   static const law = "assets/images/law.png";
+  static const complate = "assets/images/complate.png";
 }

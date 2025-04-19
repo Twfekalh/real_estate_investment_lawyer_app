@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/src/drawer_controller.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/home%20page/widget/drawer_item.dart';
 import 'package:lawyer_app/untility/app_color.dart' show AppColors;
@@ -35,7 +36,7 @@ class CustomDrawer extends StatelessWidget {
             icon: Icons.history,
             title: 'History',
             onTap: () {
-              GoRouter.of(context).push(AppRouter.kProfileView);
+              GoRouter.of(context).push(AppRouter.kComplatedPageView);
             },
           ),
           //highlight_off_sharp

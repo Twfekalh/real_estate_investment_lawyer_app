@@ -28,4 +28,15 @@ class AppColors {
   static const Color gray25 = Color(0x40D9D9D9); // 25% opacity
   static const Color brightRed = Color(0xFFF1272B);
   static const Color green = Color(0xA5088711);
+
+  static const Color pink50 = Color(0xFFFCE4EC); // زهري فاتح جداً
+  static const Color pink100 = Color(0xFFF8BBD0); // زهري فاتح
+  static const Color pink200 = Color(0xFFF48FB1); // زهري متوسط
+  static const Color pink300 = Color(0xFFF06292); // زهري ناعم
+  static const Color pink400 = Color(0xFFEC407A); // زهري متوسط مائل للدفء
+  static const Color pink500 = Color(0xFFE91E63); // زهري أساسي
+  static const Color pink600 = Color(0xFFD81B60); // زهري داكن نسبيًا
+  static const Color pink700 = Color(0xFFC2185B); // زهري داكن أكثر
+  static const Color pink800 = Color(0xFFAD1457); // زهري أعمق
+  static const Color pink900 = Color(0xFF880E4F); // زهري داكن جداً
 }

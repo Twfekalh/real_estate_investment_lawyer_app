@@ -10,6 +10,7 @@ import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet
 import 'package:lawyer_app/presentation/help/help_view.dart';
 import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
+import 'package:lawyer_app/presentation/home%20page/widget/complated_page_view.dart';
 import 'package:lawyer_app/presentation/profile/profile_view.dart';
 
 abstract class AppRouter {
@@ -17,7 +18,7 @@ abstract class AppRouter {
   static const kSignupView = '/signupView';
   static const kResetPasswordView = '/resetPasswordView';
   static const kForgotPasswordView = '/forgotPasswordView';
-  static const kProfileView = '/profileView';
+  static const kProfileView = '/ProfileView';
   static const kHelpView = '/helpView';
   static const kCheckView = '/CheckView';
   static const kCheckPropertyView = '/CheckPropertyView';
@@ -25,6 +26,7 @@ abstract class AppRouter {
   static const kCheckDocumentView = '/CheckDocumentView';
   static const kCommonQuestion = '/CommonQuestion';
   static const kBayView = '/BayView';
+  static const kComplatedPageView = '/ComplatedPageView';
 
   static final router = GoRouter(
     routes: [
@@ -36,6 +38,10 @@ abstract class AppRouter {
       GoRoute(
         path: kSignupView,
         builder: (context, state) => const SignUpView(),
+      ),
+      GoRoute(
+        path: kComplatedPageView,
+        builder: (context, state) => const ComplatedPageView(),
       ),
       GoRoute(
         path: kRefuseReasonBottomSheet,
