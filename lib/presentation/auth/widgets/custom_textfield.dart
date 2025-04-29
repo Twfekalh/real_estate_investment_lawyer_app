@@ -5,22 +5,27 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final bool isPassword;
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
 
   const CustomTextField({
     super.key,
     required this.hintText,
     required this.icon,
     this.isPassword = false,
+    this.controller,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
+      onChanged: onChanged,
       obscureText: isPassword,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: AppColors.black38),
-        // prefixIcon: Icon(icon, color: Colors.grey),
         suffixIcon:
             isPassword
                 ? Icon(Icons.visibility_off, color: Colors.grey)
