@@ -1,101 +1,58 @@
-import 'package:bloc/bloc.dart';
-import 'package:lawyer_app/core/enums.dart';
-import 'package:lawyer_app/core/helper_response.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Bloc;
+import 'package:lawyer_app/core/api_service.dart';
 import 'package:lawyer_app/data/models/login_response.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
-import 'package:lawyer_app/untility/cache_helper.dart';
-import 'package:meta/meta.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final AuthRepoImpl authRepoImpl;
-
   UserBloc(this.authRepoImpl) : super(UserInitial()) {
-    on<LogInEvent>(_onLogIn);
-    on<ResetPasswordEvent>(_onResetPassword);
-    on<SendVerificationCodeEvent>(_onSendVerificationCode);
-    on<VerifyCodeEvent>(_onVerifyCode);
-  }
+    on<LogInEvent>((event, emit) async {
+      emit(UserLoading());
+      final response = await authRepoImpl.logIn(event);
 
-  Future<void> _onLogIn(LogInEvent event, Emitter<UserState> emit) async {
-    emit(UserLoading());
-    final resp = await authRepoImpl.logIn(
-      email: event.email,
-      password: event.password,
-    );
-
-    if (resp.servicesResponse == ServicesResponseStatues.success &&
-        resp.fullBody != null) {
-      try {
-        final loginModel = LoginResponse.fromJson(resp.fullBody!);
-        await CacheHelper.setData(key: 'token', value: loginModel.token);
-        emit(UserLoginState(user: loginModel));
-      } catch (_) {
-        emit(
-          UserErrorState(
-            helperResponse: resp.copyWith(
-              servicesResponse: ServicesResponseStatues.someThingWrong,
-              response: 'Parsing error',
-            ),
-          ),
-        );
+      if (response is LogInResponse) {
+        emit(UserLoginState(user: response));
+        print('hiii');
+        print(response.token);
+      } else {
+        emit(UserErrorState(helperResponse: response));
       }
-    } else {
-      emit(UserErrorState(helperResponse: resp));
-    }
-  }
+    });
+    on<ResetPasswordEvent>((event, emit) async {
+      emit(UserLoading());
+      final response = await authRepoImpl.resetPassword(event);
 
-  Future<void> _onResetPassword(
-    ResetPasswordEvent event,
-    Emitter<UserState> emit,
-  ) async {
-    emit(UserLoading());
-    final resp = await authRepoImpl.resetPassword(
-      email: event.email,
-      password: event.password,
-      passwordConfirmation: event.passWordConfirm,
-    );
+      if (response is String) {
+        print('hjjj lll');
+        emit(ResetSuccessState(message: response));
+      } else {
+        emit(UserErrorState(helperResponse: response));
+      }
+    });
 
-    if (resp.servicesResponse == ServicesResponseStatues.success) {
-      final msg = resp.fullBody?['message'] as String? ?? 'Success';
-      emit(ResetSuccessState(message: msg));
-    } else {
-      emit(UserErrorState(helperResponse: resp));
-    }
-  }
+    on<SendVerificationCodeEvent>((event, emit) async {
+      emit(UserLoading());
+      final response = await authRepoImpl.sendVerificationCode(event);
 
-  Future<void> _onSendVerificationCode(
-    SendVerificationCodeEvent event,
-    Emitter<UserState> emit,
-  ) async {
-    emit(UserLoading());
-    final resp = await authRepoImpl.sendVerificationCode(email: event.email);
+      if (response is String) {
+        emit(SendVerificationSuccessState(message: response));
+      } else {
+        emit(UserErrorState(helperResponse: response));
+      }
+    });
 
-    if (resp.servicesResponse == ServicesResponseStatues.success) {
-      final msg = resp.fullBody?['message'] as String? ?? 'Code sent';
-      emit(SendVerificationSuccessState(message: msg));
-    } else {
-      emit(UserErrorState(helperResponse: resp));
-    }
-  }
+    on<VerifyCodeEvent>((event, emit) async {
+      emit(UserLoading());
+      final response = await authRepoImpl.verifyCode(event);
 
-  Future<void> _onVerifyCode(
-    VerifyCodeEvent event,
-    Emitter<UserState> emit,
-  ) async {
-    emit(UserLoading());
-    final resp = await authRepoImpl.verifyCode(
-      email: event.email,
-      code: event.code,
-    );
-
-    if (resp.servicesResponse == ServicesResponseStatues.success) {
-      final msg = resp.fullBody?['message'] as String? ?? 'Verified';
-      emit(VerifiySuccessState(message: msg));
-    } else {
-      emit(UserErrorState(helperResponse: resp));
-    }
+      if (response is String) {
+        emit(VerifiySuccessState(message: response));
+      } else {
+        emit(UserErrorState(helperResponse: response));
+      }
+    });
   }
 }

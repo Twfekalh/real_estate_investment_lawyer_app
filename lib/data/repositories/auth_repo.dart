@@ -1,21 +1,8 @@
-import '../../core/helper_response.dart';
+import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
 
 abstract class AuthRepo {
-  Future<HelperResponse> logIn({
-    required String email,
-    required String password,
-  });
-
-  Future<HelperResponse> sendVerificationCode({required String email});
-
-  Future<HelperResponse> verifyCode({
-    required String email,
-    required String code,
-  });
-
-  Future<HelperResponse> resetPassword({
-    required String email,
-    required String password,
-    required String passwordConfirmation,
-  });
+  Future logIn(LogInEvent event);
+  Future sendVerificationCode(SendVerificationCodeEvent event);
+  Future resetPassword(ResetPasswordEvent event);
+  Future verifyCode(VerifyCodeEvent event);
 }

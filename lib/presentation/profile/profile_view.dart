@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/profile/widget/profile_info_row.dart';
 import 'package:lawyer_app/untility/app_assests.dart';
 import 'package:lawyer_app/untility/app_color.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});

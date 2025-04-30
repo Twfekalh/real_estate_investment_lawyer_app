@@ -1,56 +1,107 @@
-import '../../core/api_service.dart';
-import '../../core/helper_response.dart';
-import '../../config/api_config.dart';
-import 'auth_repo.dart';
+import 'package:lawyer_app/config/api_config.dart';
+import 'package:lawyer_app/core/api_service.dart';
+import 'package:lawyer_app/core/enums.dart';
+import 'package:lawyer_app/core/handle_cash.dart';
+import 'package:lawyer_app/data/models/login_response.dart';
+import 'package:lawyer_app/data/repositories/auth_repo.dart';
+import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  final ApiService _api;
+  final ApiService _apiService;
 
-  AuthRepoImpl(this._api);
-
+  AuthRepoImpl(this._apiService);
   @override
-  Future<HelperResponse> logIn({
-    required String email,
-    required String password,
-  }) {
-    return _api.post(
+  Future logIn(LogInEvent event) async {
+    HelperResponse helperResponse = await _apiService.post(
       endpoint: ApiConfig.loginEndpoint,
-      data: {'email': email, 'password': password},
+      data: {'email': event.email, 'password': event.password},
     );
+    //  print(helperResponse.servicesResponse);
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+      try {
+        LogInResponse logInResponse = LogInResponse.from(
+          helperResponse.fullBody!,
+        );
+        print('Full response: ${helperResponse.fullBody}');
+        print(logInResponse);
+        print('hiii22');
+        print(logInResponse.message);
+        await setCache(logInResponse);
+        return logInResponse;
+      } catch (e) {
+        return helperResponse.copyWith(
+          servicesResponse: ServicesResponseStatues.modelError,
+        );
+      }
+    }
+
+    return helperResponse;
   }
 
   @override
-  Future<HelperResponse> sendVerificationCode({required String email}) {
-    return _api.post(
-      endpoint: ApiConfig.sendVerificationCode,
-      data: {'email': email},
-    );
-  }
-
-  @override
-  Future<HelperResponse> verifyCode({
-    required String email,
-    required String code,
-  }) {
-    return _api.post(
-      endpoint: ApiConfig.verifyCode,
-      data: {'email': email, 'verification_code': code},
-    );
-  }
-
-  @override
-  Future<HelperResponse> resetPassword({
-    required String email,
-    required String password,
-    required String passwordConfirmation,
-  }) {
-    return _api.post(
+  Future resetPassword(ResetPasswordEvent event) async {
+    HelperResponse helperResponse = await _apiService.post(
       endpoint: ApiConfig.resetPassword,
       data: {
-        'email': email,
-        'password': password,
-        'password_confirmation': passwordConfirmation,
+        'email': event.email,
+        'password': event.password,
+        'password_confirmation': event.passWordConfirm,
       },
     );
+    //  print(helperResponse.servicesResponse);
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+      try {
+        final responseBody = helperResponse.fullBody;
+        return responseBody?['message'];
+      } catch (e) {
+        return helperResponse.copyWith(
+          servicesResponse: ServicesResponseStatues.modelError,
+        );
+      }
+    }
+
+    return helperResponse;
+  }
+
+  @override
+  Future sendVerificationCode(SendVerificationCodeEvent event) async {
+    HelperResponse helperResponse = await _apiService.post(
+      endpoint: ApiConfig.sendVerificationCode,
+      data: {'email': event.email},
+    );
+    //  print(helperResponse.servicesResponse);
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+      try {
+        final responseBody = helperResponse.fullBody;
+        return responseBody?['message'];
+      } catch (e) {
+        return helperResponse.copyWith(
+          servicesResponse: ServicesResponseStatues.modelError,
+        );
+      }
+    }
+
+    return helperResponse;
+  }
+
+  @override
+  Future verifyCode(VerifyCodeEvent event) async {
+    HelperResponse helperResponse = await _apiService.post(
+      endpoint: ApiConfig.verifyCode,
+      data: {'email': event.email, 'verification_code': event.code},
+    );
+    //  print(helperResponse.servicesResponse);
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+      try {
+        final responseBody = helperResponse.fullBody;
+        return responseBody?['message'];
+      } catch (e) {
+        return helperResponse.copyWith(
+          servicesResponse: ServicesResponseStatues.modelError,
+        );
+      }
+    }
+
+    return helperResponse;
   }
 }

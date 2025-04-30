@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:lawyer_app/core/handle_cash.dart';
 import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
 import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
@@ -11,10 +13,10 @@ void main() async {
 
   // 1) تهيئة الكاش
   await CacheHelper.init();
+  await getCache();
 
   // 2) تهيئة Service Locator (ApiService, AuthRepo)
   setupServiceLocator();
-
   runApp(const LawyerApp());
 }
 
@@ -23,11 +25,17 @@ class LawyerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 3) نوفّر الـ UserBloc لكل التطبيق
-    final authRepo = getIt<AuthRepoImpl>();
-    return BlocProvider(
-      create: (_) => UserBloc(authRepo),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => UserBloc(getIt.get<AuthRepoImpl>())),
+        // BlocProvider(create: (context) => SalePropertyBloc()),
+        // BlocProvider(
+        //   create:
+        //       (context) => SendPropertyBloc(getIt.get<SalePropertyRepoImpl>()),
+        // ),
+      ],
       child: MaterialApp.router(
+        builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         routerConfig: AppRouter.router,
       ),

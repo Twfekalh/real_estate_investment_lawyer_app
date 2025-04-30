@@ -1,12 +1,12 @@
 class ApiConfig {
-  static const String baseUrl = 'http://127.0.0.1:8000/api/';
+  static const String baseUrl = 'http://127.0.0.1:8000';
 
   static const int timeout = 30;
-  static const String loginEndpoint = 'auth/login';
+  static const String loginEndpoint = 'api/login';
 
-  static const String userEndpoint = 'user/profile';
+  static const String userEndpoint = 'api/profile';
 
-  static const String sendVerificationCode = 'auth/send_verification_code';
-  static const String verifyCode = 'auth/verify_code';
-  static const String resetPassword = 'auth/reset_password';
+  static const String sendVerificationCode = 'api/send_verification_code';
+  static const String verifyCode = 'api/verify_code';
+  static const String resetPassword = 'api/reset_password';
 }

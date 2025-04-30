@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/presentation/check%20property/widgets/check_mark_box.dart';
+
 import 'package:lawyer_app/presentation/check%20property/widgets/custom_button.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/property_description.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/property_type_widget.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/untility/app_assests.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileInfoRow extends StatelessWidget {
   final String icon;

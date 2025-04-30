@@ -1,38 +1,48 @@
-// lib/data/models/login_response.dart
+import 'dart:convert';
 
-class LoginResponse {
-  final String message;
-  final LoginData data;
-  final String token;
+import 'data.dart';
 
-  LoginResponse({
-    required this.message,
-    required this.data,
-    required this.token,
-  });
+class LogInResponse {
+  String? message;
+  Data? data;
+  String? token;
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) {
-    return LoginResponse(
-      message: json['message'] as String,
-      data: LoginData.fromJson(json['data'] as Map<String, dynamic>),
-      token: json['token'] as String,
+  LogInResponse({this.message, this.data, this.token});
+
+  factory LogInResponse.from(Map<String, dynamic> data) {
+    return LogInResponse(
+      message: data['message'] as String?,
+      data:
+          data['data'] == null
+              ? null
+              : Data.fromMessageDataId1NameAliAliEmailAliGmailComEmailVerifiedAtNullPhone09823824825VerificationCodeNullRoleId1CreatedAt20250414T013914000000ZUpdatedAt20250414T013914000000ZTokenEyJ0eXAiOiJkv1QiLcJhbGciOiJsUzI1NiJ9EyJhdWQiOiIxIiwianRpIjoiOdJlYzQ2ZdUxZmMxYmVmNzQ3ZmJjZda0NdJhNDkzZDcyN2RiZwu1OTdhNjU2YjY2ZjBiNjM4Mjk5ZjI4YzEyYzM1NzU1NjM3Zdm5OtYzZjgiLcJpYxQiOjE3Ndq3MjYyNTcuMty5NjE2LcJuYmYiOjE3Ndq3MjYyNTcuMty5NjE4LcJleHAiOjE3NzYyNjIyNtYuOtAzNTc0LcJzdWIiOiIxIiwic2NvcGVzIjpbXx0FuqAjg0Ty8EqohnzRvsro6J7B0ReZdxRyG29gNHlNchYxRjubj97KdEnBzd7Dr7Xoeim49VdbNmR4A9raxO4jHpYEs0IJtLsgGnDCdl5OXsq5O16BroWo8VusvxlaF5fUs3iHmJzJ8YoPhIcmxikwAbTo1mDQznNkf6GfNaInzUfPdWgGtHwQc7drkHlYGqPe4cCqMZqIqLGnvJkLLkfAdwZeznjt2wrsOotyQpjzF10mXGnDiemtwXcWcaz2r3JBvn0rSi1yxAAroS9rCrIaWqEhxhSwwSiNHuNRhGgVbzWBZvbzThiUxuEGaLaXdcWFil8nxZuJPtVl9aQ7khaVmes3Y24W27pyPbpsEDeVaI0pzFwvJiz65PvOCaB5qCvjMDqgmMRuScMv5ySCpusE7z9gSwUBBbDtgifQ9Tr3LcbkGbYiQnahGLvUiOrEtGjhsH7gI755Bq9BmDsJaPyHtyxUqsXiqXlBTnvfKbzM99zz6aEy63HNgFx06Vzk3FwbcSsy7WhReW0wK1CDdmDJaHbRLmhORgVeiTHcGexPlrnF6EpP2m7w5h1fKmOcDYqudwMTas0kD92useWQtizadR0a0IysUb6XIiIkj7BoGxivHjr4IqhmRwdfNjYOqS8lkX0e0UncHu10d3LmymE2ssM(
+                data['data'] as Map<String, dynamic>,
+              ),
+      token: data['token'] as String?,
     );
   }
-}
 
-class LoginData {
-  final int id;
-  final String name;
-  final String email;
-  // أضف الحقول الأخرى إن وُجدت
-
-  LoginData({required this.id, required this.name, required this.email});
-
-  factory LoginData.fromJson(Map<String, dynamic> json) {
-    return LoginData(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      email: json['email'] as String,
-    );
+  Map<String, dynamic>
+  toMessageDataId1NameAliAliEmailAliGmailComEmailVerifiedAtNullPhone09823824825VerificationCodeNullRoleId1CreatedAt20250414T013914000000ZUpdatedAt20250414T013914000000ZTokenEyJ0eXAiOiJkv1QiLcJhbGciOiJsUzI1NiJ9EyJhdWQiOiIxIiwianRpIjoiOdJlYzQ2ZdUxZmMxYmVmNzQ3ZmJjZda0NdJhNDkzZDcyN2RiZwu1OTdhNjU2YjY2ZjBiNjM4Mjk5ZjI4YzEyYzM1NzU1NjM3Zdm5OtYzZjgiLcJpYxQiOjE3Ndq3MjYyNTcuMty5NjE2LcJuYmYiOjE3Ndq3MjYyNTcuMty5NjE4LcJleHAiOjE3NzYyNjIyNtYuOtAzNTc0LcJzdWIiOiIxIiwic2NvcGVzIjpbXx0FuqAjg0Ty8EqohnzRvsro6J7B0ReZdxRyG29gNHlNchYxRjubj97KdEnBzd7Dr7Xoeim49VdbNmR4A9raxO4jHpYEs0IJtLsgGnDCdl5OXsq5O16BroWo8VusvxlaF5fUs3iHmJzJ8YoPhIcmxikwAbTo1mDQznNkf6GfNaInzUfPdWgGtHwQc7drkHlYGqPe4cCqMZqIqLGnvJkLLkfAdwZeznjt2wrsOotyQpjzF10mXGnDiemtwXcWcaz2r3JBvn0rSi1yxAAroS9rCrIaWqEhxhSwwSiNHuNRhGgVbzWBZvbzThiUxuEGaLaXdcWFil8nxZuJPtVl9aQ7khaVmes3Y24W27pyPbpsEDeVaI0pzFwvJiz65PvOCaB5qCvjMDqgmMRuScMv5ySCpusE7z9gSwUBBbDtgifQ9Tr3LcbkGbYiQnahGLvUiOrEtGjhsH7gI755Bq9BmDsJaPyHtyxUqsXiqXlBTnvfKbzM99zz6aEy63HNgFx06Vzk3FwbcSsy7WhReW0wK1CDdmDJaHbRLmhORgVeiTHcGexPlrnF6EpP2m7w5h1fKmOcDYqudwMTas0kD92useWQtizadR0a0IysUb6XIiIkj7BoGxivHjr4IqhmRwdfNjYOqS8lkX0e0UncHu10d3LmymE2ssM() {
+    return {
+      'message': message,
+      'data':
+          data?.toMessageDataId1NameAliAliEmailAliGmailComEmailVerifiedAtNullPhone09823824825VerificationCodeNullRoleId1CreatedAt20250414T013914000000ZUpdatedAt20250414T013914000000ZTokenEyJ0eXAiOiJkv1QiLcJhbGciOiJsUzI1NiJ9EyJhdWQiOiIxIiwianRpIjoiOdJlYzQ2ZdUxZmMxYmVmNzQ3ZmJjZda0NdJhNDkzZDcyN2RiZwu1OTdhNjU2YjY2ZjBiNjM4Mjk5ZjI4YzEyYzM1NzU1NjM3Zdm5OtYzZjgiLcJpYxQiOjE3Ndq3MjYyNTcuMty5NjE2LcJuYmYiOjE3Ndq3MjYyNTcuMty5NjE4LcJleHAiOjE3NzYyNjIyNtYuOtAzNTc0LcJzdWIiOiIxIiwic2NvcGVzIjpbXx0FuqAjg0Ty8EqohnzRvsro6J7B0ReZdxRyG29gNHlNchYxRjubj97KdEnBzd7Dr7Xoeim49VdbNmR4A9raxO4jHpYEs0IJtLsgGnDCdl5OXsq5O16BroWo8VusvxlaF5fUs3iHmJzJ8YoPhIcmxikwAbTo1mDQznNkf6GfNaInzUfPdWgGtHwQc7drkHlYGqPe4cCqMZqIqLGnvJkLLkfAdwZeznjt2wrsOotyQpjzF10mXGnDiemtwXcWcaz2r3JBvn0rSi1yxAAroS9rCrIaWqEhxhSwwSiNHuNRhGgVbzWBZvbzThiUxuEGaLaXdcWFil8nxZuJPtVl9aQ7khaVmes3Y24W27pyPbpsEDeVaI0pzFwvJiz65PvOCaB5qCvjMDqgmMRuScMv5ySCpusE7z9gSwUBBbDtgifQ9Tr3LcbkGbYiQnahGLvUiOrEtGjhsH7gI755Bq9BmDsJaPyHtyxUqsXiqXlBTnvfKbzM99zz6aEy63HNgFx06Vzk3FwbcSsy7WhReW0wK1CDdmDJaHbRLmhORgVeiTHcGexPlrnF6EpP2m7w5h1fKmOcDYqudwMTas0kD92useWQtizadR0a0IysUb6XIiIkj7BoGxivHjr4IqhmRwdfNjYOqS8lkX0e0UncHu10d3LmymE2ssM(),
+      'token': token,
+    };
   }
+
+  /// `dart:convert`
+  ///
+  /// Parses the string and returns the resulting Json object as [LogInResponse].
+  factory LogInResponse.fromJson(String data) {
+    return LogInResponse.from(json.decode(data) as Map<String, dynamic>);
+  }
+
+  /// `dart:convert`
+  ///
+  /// Converts [LogInResponse] to a JSON string.
+  String toJson() => json.encode(
+    toMessageDataId1NameAliAliEmailAliGmailComEmailVerifiedAtNullPhone09823824825VerificationCodeNullRoleId1CreatedAt20250414T013914000000ZUpdatedAt20250414T013914000000ZTokenEyJ0eXAiOiJkv1QiLcJhbGciOiJsUzI1NiJ9EyJhdWQiOiIxIiwianRpIjoiOdJlYzQ2ZdUxZmMxYmVmNzQ3ZmJjZda0NdJhNDkzZDcyN2RiZwu1OTdhNjU2YjY2ZjBiNjM4Mjk5ZjI4YzEyYzM1NzU1NjM3Zdm5OtYzZjgiLcJpYxQiOjE3Ndq3MjYyNTcuMty5NjE2LcJuYmYiOjE3Ndq3MjYyNTcuMty5NjE4LcJleHAiOjE3NzYyNjIyNtYuOtAzNTc0LcJzdWIiOiIxIiwic2NvcGVzIjpbXx0FuqAjg0Ty8EqohnzRvsro6J7B0ReZdxRyG29gNHlNchYxRjubj97KdEnBzd7Dr7Xoeim49VdbNmR4A9raxO4jHpYEs0IJtLsgGnDCdl5OXsq5O16BroWo8VusvxlaF5fUs3iHmJzJ8YoPhIcmxikwAbTo1mDQznNkf6GfNaInzUfPdWgGtHwQc7drkHlYGqPe4cCqMZqIqLGnvJkLLkfAdwZeznjt2wrsOotyQpjzF10mXGnDiemtwXcWcaz2r3JBvn0rSi1yxAAroS9rCrIaWqEhxhSwwSiNHuNRhGgVbzWBZvbzThiUxuEGaLaXdcWFil8nxZuJPtVl9aQ7khaVmes3Y24W27pyPbpsEDeVaI0pzFwvJiz65PvOCaB5qCvjMDqgmMRuScMv5ySCpusE7z9gSwUBBbDtgifQ9Tr3LcbkGbYiQnahGLvUiOrEtGjhsH7gI755Bq9BmDsJaPyHtyxUqsXiqXlBTnvfKbzM99zz6aEy63HNgFx06Vzk3FwbcSsy7WhReW0wK1CDdmDJaHbRLmhORgVeiTHcGexPlrnF6EpP2m7w5h1fKmOcDYqudwMTas0kD92useWQtizadR0a0IysUb6XIiIkj7BoGxivHjr4IqhmRwdfNjYOqS8lkX0e0UncHu10d3LmymE2ssM(),
+  );
 }

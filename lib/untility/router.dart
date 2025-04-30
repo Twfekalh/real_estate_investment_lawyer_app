@@ -3,7 +3,7 @@ import 'package:lawyer_app/presentation/auth/login_view.dart';
 import 'package:lawyer_app/presentation/buy/buy_view.dart';
 import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
 import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
-import 'package:lawyer_app/presentation/auth/signup_view.dart';
+
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
 import 'package:lawyer_app/presentation/check%20property/check_property_view.dart';
 import 'package:lawyer_app/presentation/check/check_view.dart';
@@ -32,7 +32,7 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const HomePageView()),
+      GoRoute(path: '/', builder: (context, state) => const LoginView()),
       GoRoute(
         path: kHomePageView,
         builder: (context, state) => const HomePageView(),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/property_type_option.dart';
-import 'package:lawyer_app/untility/app_color.dart';
 
 class PropertyTypeWidget extends StatelessWidget {
   const PropertyTypeWidget({super.key});
