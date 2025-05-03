@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/untility/app_assests.dart';
 import 'package:lawyer_app/untility/app_color.dart';
+import 'package:lawyer_app/untility/app_gradient.dart';
 
 class HomePageItem extends StatelessWidget {
   const HomePageItem({
     super.key,
     required this.mainText,
     required this.secondText,
-    required this.color,
+    required this.startColor,
+    required this.endColor,
+
     required this.imageICon,
   });
 
   final String mainText;
   final String secondText;
-  final Color color;
+  final Color startColor;
+  final Color endColor;
+
   final String imageICon;
 
   Color? getIconColor() {
@@ -34,7 +39,7 @@ class HomePageItem extends StatelessWidget {
       width: 345,
       height: 56,
       decoration: ShapeDecoration(
-        color: color,
+        gradient: customGradient(startColor, endColor),
         shape: RoundedRectangleBorder(
           side: BorderSide(width: 1, color: Colors.black.withAlpha(117)),
           borderRadius: BorderRadius.circular(7),

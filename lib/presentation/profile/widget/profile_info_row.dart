@@ -5,12 +5,16 @@ class ProfileInfoRow extends StatelessWidget {
   final String icon;
   final String text;
   final VoidCallback onTap;
+  final Color iconColor;
+  final double iconSize;
 
   const ProfileInfoRow({
     super.key,
     required this.icon,
     required this.text,
     required this.onTap,
+    this.iconColor = Colors.black54,
+    this.iconSize = 24.0,
   });
 
   @override
@@ -19,22 +23,33 @@ class ProfileInfoRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          Image(image: AssetImage(icon)),
-          const SizedBox(width: 24),
+          Image.asset(
+            icon,
+            width: iconSize,
+            height: iconSize,
+            color: iconColor,
+            colorBlendMode: BlendMode.srcIn,
+          ),
+          const SizedBox(width: 30),
           Expanded(
             child: Text(
               text,
               style: const TextStyle(
                 color: Colors.black87,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          GestureDetector(
-            onTap: onTap,
-            child: Image(image: AssetImage(AppAssets.editIcon)),
-          ),
+          // GestureDetector(
+          //   onTap: onTap,
+          //   child: Image.asset(
+          //     AppAssets.editIcon,
+          //     width: 20,
+          //     height: 20,
+          //     color: Colors.grey[800],
+          //   ),
+          // ),
         ],
       ),
     );

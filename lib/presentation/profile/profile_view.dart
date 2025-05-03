@@ -27,98 +27,105 @@ class ProfileView extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 48.0),
-            child: Row(
-              spacing: 35,
-              children: [
-                Container(
-                  width: 103,
-                  height: 103,
-                  decoration: ShapeDecoration(
-                    color: const Color(0x669A8AEC),
-                    shape: OvalBorder(
-                      side: BorderSide(
-                        width: 4,
-                        color: const Color(0xFF836DF3),
-                      ),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'AM',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 36,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Ali Mossa',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      'joined in 2 April 2020',
-                      style: TextStyle(
-                        // ignore: deprecated_member_use
-                        color: Colors.black.withOpacity(0.53),
-
-                        fontSize: 13,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 30),
-          Container(
-            width: 349,
-            height: 217,
-            decoration: ShapeDecoration(
-              color: const Color(0x3F9A8AEC),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(width: 3, color: const Color(0xFF836DF3)),
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0, left: 10, right: 10),
-              child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 48.0),
+              child: Row(
+                spacing: 35,
                 children: [
-                  ProfileInfoRow(
-                    icon: AppAssets.messageIcon,
-                    text: 'email.email@gmail.com',
-                    onTap: () {},
+                  Container(
+                    width: 103,
+                    height: 103,
+                    decoration: ShapeDecoration(
+                      color: const Color(0x669A8AEC),
+                      shape: OvalBorder(
+                        side: BorderSide(
+                          width: 4,
+                          color: const Color(0xFF836DF3),
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'TA',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 36,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
                   ),
-                  SizedBox(height: 10),
-                  ProfileInfoRow(
-                    icon: AppAssets.phoneIcon,
-                    text: '+963 9933445588',
-                    onTap: () {},
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Twfek Alh',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'joined in 2 April 2020',
+                        style: TextStyle(
+                          // ignore: deprecated_member_use
+                          color: Colors.black.withOpacity(0.53),
+
+                          fontSize: 13,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 30),
+            Container(
+              width: 349,
+              height: 217,
+              decoration: ShapeDecoration(
+                color: const Color(0x3F9A8AEC),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 3, color: const Color(0xFF836DF3)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0, left: 10, right: 10),
+                child: Column(
+                  children: [
+                    ProfileInfoRow(
+                      icon: AppAssets.messageIcon,
+                      text: 'twfek.alh@gmail.com',
+                      onTap: () {},
+                      iconColor: Colors.black54,
+                      iconSize: 35,
+                    ),
+                    SizedBox(height: 10),
+                    ProfileInfoRow(
+                      icon: AppAssets.phoneIcon,
+                      text: '+963 9933445588',
+                      onTap: () {},
+                      iconColor: Colors.black54,
+                      iconSize: 35,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

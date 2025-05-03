@@ -148,13 +148,13 @@ class _LoginViewState extends State<LoginView> {
                               text: "Don’t have an account? ",
                               style: TextStyle(color: Colors.black54),
                               children: [
-                                TextSpan(
-                                  text: "Sign up",
-                                  style: TextStyle(
-                                    color: AppColors.lightPurple,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                // TextSpan(
+                                //   text: "Sign up",
+                                //   style: TextStyle(
+                                //     color: AppColors.lightPurple,
+                                //     fontWeight: FontWeight.w600,
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

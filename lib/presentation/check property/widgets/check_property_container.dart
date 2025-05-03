@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SaleEstateContainer extends StatelessWidget {
-  const SaleEstateContainer({
+class CheckPropertyContainer extends StatelessWidget {
+  const CheckPropertyContainer({
     super.key,
     required this.height,
     required this.child,

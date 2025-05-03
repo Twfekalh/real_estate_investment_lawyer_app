@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:lawyer_app/presentation/check%20property/widgets/check_property_container.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/custom_button.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/property_description.dart';
 import 'package:lawyer_app/presentation/check%20property/widgets/property_type_widget.dart';
-import 'package:lawyer_app/presentation/check%20property/widgets/sales_estate_container.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 import 'package:lawyer_app/untility/router.dart';
 
@@ -53,17 +52,17 @@ class CheckPropertyView extends StatelessWidget {
                   child: Column(
                     spacing: 10,
                     children: [
-                      SaleEstateContainer(
+                      CheckPropertyContainer(
                         height: 90,
                         child: PropertyTypeWidget(),
                       ),
 
                       const SizedBox(height: 0),
-                      SaleEstateContainer(
+                      CheckPropertyContainer(
                         height: 575,
                         child: PropertyDescriptionWidget(),
                       ),
-                      SaleEstateContainer(
+                      CheckPropertyContainer(
                         height: 150,
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),

@@ -140,7 +140,7 @@ class CheckViewBody extends StatelessWidget {
                       'Done',
                       style: TextStyle(
                         fontSize: 16,
-                        color: AppColors.background,
+                        color: AppColors.lightPurple,
                       ),
                     ),
                   ),
