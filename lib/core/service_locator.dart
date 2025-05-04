@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:lawyer_app/config/api_config.dart';
 import 'package:lawyer_app/core/api_service.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
+import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
 
 final GetIt getIt = GetIt.instance;
 void setupServiceLocator() {
@@ -21,4 +22,7 @@ void setupServiceLocator() {
     ),
   );
   getIt.registerSingleton<AuthRepoImpl>(AuthRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<ProfileRepoImpl>(
+    ProfileRepoImpl(getIt.get<ApiService>()),
+  );
 }

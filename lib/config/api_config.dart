@@ -7,7 +7,7 @@ class ApiConfig {
   // static const int timeout = 30;
   static const String loginEndpoint = 'api/login';
 
-  static const String userEndpoint = 'api/profile';
+  static const String getProfile = 'api/profile';
 
   static const String sendVerificationCode = 'api/send_verification_code';
   static const String verifyCode = 'api/verify_code';

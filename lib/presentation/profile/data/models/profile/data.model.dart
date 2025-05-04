@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Data extends Equatable {
+class UserProfile extends Equatable {
   final int? id;
   final String? name;
   final String? email;
@@ -11,7 +11,7 @@ class Data extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  const Data({
+  const UserProfile({
     this.id,
     this.name,
     this.email,
@@ -23,7 +23,7 @@ class Data extends Equatable {
     this.updatedAt,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
     id: json['id'] as int?,
     name: json['name'] as String?,
     email: json['email'] as String?,

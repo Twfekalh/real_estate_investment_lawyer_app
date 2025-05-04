@@ -2,19 +2,20 @@ import 'package:equatable/equatable.dart';
 
 import 'data.model.dart';
 
-class Profile extends Equatable {
+class ProfileResponse extends Equatable {
   final String? message;
-  final Data? data;
+  final UserProfile? data;
 
-  const Profile({this.message, this.data});
+  const ProfileResponse({this.message, this.data});
 
-  factory Profile.fromJson(Map<String, dynamic> json) => Profile(
-    message: json['message'] as String?,
-    data:
-        json['data'] == null
-            ? null
-            : Data.fromJson(json['data'] as Map<String, dynamic>),
-  );
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
+      ProfileResponse(
+        message: json['message'] as String?,
+        data:
+            json['data'] == null
+                ? null
+                : UserProfile.fromJson(json['data'] as Map<String, dynamic>),
+      );
 
   Map<String, dynamic> toJson() => {'message': message, 'data': data?.toJson()};
 

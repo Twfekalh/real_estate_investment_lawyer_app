@@ -5,6 +5,8 @@ import 'package:lawyer_app/core/handle_cash.dart';
 import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
 import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
+import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
+import 'package:lawyer_app/presentation/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lawyer_app/untility/cache_helper.dart';
 import 'package:lawyer_app/untility/router.dart' show AppRouter;
 
@@ -28,7 +30,9 @@ class LawyerApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => UserBloc(getIt.get<AuthRepoImpl>())),
-        // BlocProvider(create: (context) => SalePropertyBloc()),
+        BlocProvider(
+          create: (context) => ProfileBloc(getIt.get<ProfileRepoImpl>()),
+        ),
         // BlocProvider(
         //   create:
         //       (context) => SendPropertyBloc(getIt.get<SalePropertyRepoImpl>()),
