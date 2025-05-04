@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
+import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 import 'package:lawyer_app/untility/router.dart' show AppRouter;
 import 'pressable_button.dart';

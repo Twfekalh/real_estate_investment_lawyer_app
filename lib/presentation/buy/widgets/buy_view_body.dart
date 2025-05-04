@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/buy/widgets/image_bay_section.dart';
 
-import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
+import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 
 class BayViewBody extends StatelessWidget {

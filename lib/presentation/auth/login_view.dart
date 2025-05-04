@@ -145,7 +145,7 @@ class _LoginViewState extends State<LoginView> {
                           },
                           child: const Text.rich(
                             TextSpan(
-                              text: "Don’t have an account? ",
+                              text: "Enter your information ",
                               style: TextStyle(color: Colors.black54),
                               children: [
                                 // TextSpan(

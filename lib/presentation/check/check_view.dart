@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyer_app/presentation/check/widgets/check_view_body.dart';
+import 'package:lawyer_app/presentation/check/presentation/widgets/check_view_body.dart';
 import 'package:lawyer_app/untility/app_color.dart' show AppColors;
 
 class CheckView extends StatelessWidget {

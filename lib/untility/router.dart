@@ -7,7 +7,7 @@ import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
 import 'package:lawyer_app/presentation/check%20property/check_property_view.dart';
 import 'package:lawyer_app/presentation/check/check_view.dart';
-import 'package:lawyer_app/presentation/check/widgets/refuse_reason_bottom_sheet.dart';
+import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
 import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
