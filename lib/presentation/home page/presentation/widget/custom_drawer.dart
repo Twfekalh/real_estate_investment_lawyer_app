@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/presentation/home%20page/widget/drawer_item.dart';
+import 'package:lawyer_app/presentation/home%20page/presentation/widget/drawer_item.dart';
 import 'package:lawyer_app/untility/app_color.dart' show AppColors;
 import 'package:lawyer_app/untility/router.dart';
 

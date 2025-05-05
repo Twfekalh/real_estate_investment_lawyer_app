@@ -11,7 +11,7 @@ import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason
 import 'package:lawyer_app/presentation/help/help_view.dart';
 import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
-import 'package:lawyer_app/presentation/home%20page/widget/complated_page_view.dart';
+import 'package:lawyer_app/presentation/home%20page/presentation/widget/complated_page_view.dart';
 import 'package:lawyer_app/presentation/profile/profile_view.dart';
 
 abstract class AppRouter {

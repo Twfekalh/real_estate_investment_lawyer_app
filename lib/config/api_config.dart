@@ -15,4 +15,5 @@ class ApiConfig {
   static const String getAllRequests = 'api/get_all_Request';
   static const String acceptRequest = 'api/accept_Request/2';
   static const String rejectRequest = 'api/reject_Request/2';
+  static const String homeEndpoint = 'api/get_all_Request';
 }

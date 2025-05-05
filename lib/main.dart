@@ -5,6 +5,8 @@ import 'package:lawyer_app/core/handle_cash.dart';
 import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
 import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
+import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
+import 'package:lawyer_app/presentation/home%20page/presentation/bloc/home_bloc.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
 import 'package:lawyer_app/presentation/profile/presentation/bloc/profile_bloc.dart';
 import 'package:lawyer_app/untility/cache_helper.dart';
@@ -33,10 +35,7 @@ class LawyerApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ProfileBloc(getIt.get<ProfileRepoImpl>()),
         ),
-        // BlocProvider(
-        //   create:
-        //       (context) => SendPropertyBloc(getIt.get<SalePropertyRepoImpl>()),
-        // ),
+        BlocProvider(create: (context) => HomeBloc(getIt.get<HomeRepoImpl>())),
       ],
       child: MaterialApp.router(
         builder: EasyLoading.init(),
