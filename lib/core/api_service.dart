@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -86,49 +87,53 @@ class ApiService {
   Future<HelperResponse> get({
     required String endpoint,
     Map<String, dynamic>? query,
-    dynamic data,
     String? token,
   }) async {
+    // Set headers safely
     _dio.options.headers = {
-      'Authorization': 'Bearer $token',
+      if (token != null) 'Authorization': 'Bearer $token',
       "Connection": "Keep-Alive",
       'Cache-Control': 'no-cache',
       "Keep-Alive": "timeout=15, max=10",
     };
 
     try {
-      var response = await _dio.get(
-        data: data,
-        endpoint,
-        queryParameters: query ?? {},
-      );
+      final response = await _dio.get(endpoint, queryParameters: query);
+
       return HelperResponse(
-        fullBody: data,
+        fullBody: response.data,
         response: response.data.toString(),
         servicesResponse: ServicesResponseStatues.success,
       );
     } on DioException catch (e) {
       print("Dio error: ${e.response?.data}");
 
+      final errorData = e.response?.data;
+
       if (e.response?.statusCode == 401) {
         return HelperResponse(
-          fullBody: data,
-          response: e.response?.data['message'] ?? 'Unauthorized',
+          fullBody: errorData,
+          response: errorData?['message'] ?? 'Unauthorized',
           servicesResponse: ServicesResponseStatues.unauthorized,
         );
       }
 
       return HelperResponse(
-        fullBody: data,
-        response:
-            e.response?.data['message'] ?? e.message ?? 'Something went wrong',
+        fullBody: errorData,
+        response: errorData?['message'] ?? e.message ?? 'Something went wrong',
         servicesResponse: ServicesResponseStatues.someThingWrong,
       );
-    } on SocketException catch (_) {
+    } on SocketException {
       return HelperResponse(
-        fullBody: data,
+        fullBody: null,
         response: 'No internet connection',
         servicesResponse: ServicesResponseStatues.networkError,
+      );
+    } catch (e) {
+      return HelperResponse(
+        fullBody: null,
+        response: 'Unexpected error: ${e.toString()}',
+        servicesResponse: ServicesResponseStatues.someThingWrong,
       );
     }
   }

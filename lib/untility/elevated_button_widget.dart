@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 
+// ignore: must_be_immutable
 class ElevatedButtonWidget extends StatelessWidget {
   ElevatedButtonWidget({
     this.mainColor = AppColors.lightBlue,

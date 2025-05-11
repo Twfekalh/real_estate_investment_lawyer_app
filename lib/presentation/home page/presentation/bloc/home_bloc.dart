@@ -11,12 +11,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this.homeRepoImpl) : super(HomeInitial()) {
     on<FetchHomeDataEvent>((event, emit) async {
+      print(' FetchHomeDataEvent triggered');
       emit(HomeLoadingState());
       final response = await homeRepoImpl.fetchHomeData(event);
-
+      print(' Response received: $response');
       if (response is HomeResponse) {
+        print(' HomeLoadedState emitted');
         emit(HomeLoadedState(homeResponse: response));
       } else {
+        print(' HomeErrorState emitted');
         emit(HomeErrorState(helperResponse: response));
       }
     });

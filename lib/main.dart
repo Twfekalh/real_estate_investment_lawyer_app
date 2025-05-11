@@ -35,7 +35,12 @@ class LawyerApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ProfileBloc(getIt.get<ProfileRepoImpl>()),
         ),
-        BlocProvider(create: (context) => HomeBloc(getIt.get<HomeRepoImpl>())),
+        BlocProvider(
+          create:
+              (context) =>
+                  HomeBloc(getIt.get<HomeRepoImpl>())
+                    ..add(FetchHomeDataEvent()),
+        ),
       ],
       child: MaterialApp.router(
         builder: EasyLoading.init(),

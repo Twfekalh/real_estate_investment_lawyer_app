@@ -1,20 +1,50 @@
 part of 'profile_bloc.dart';
 
 @immutable
-sealed class ProfileState {}
+abstract class ProfileState extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
-final class ProfileInitial extends ProfileState {}
+class ProfileInitial extends ProfileState {}
 
-final class ProfileInLoadingState extends ProfileState {}
+class ProfileInLoadingState extends ProfileState {}
 
-final class ProfileLoadingFailure extends ProfileState {
+class ProfileLoadingFailure extends ProfileState {
   final HelperResponse helperResponse;
 
   ProfileLoadingFailure({required this.helperResponse});
+
+  @override
+  List<Object?> get props => [helperResponse];
 }
 
-final class ProfileDoneState extends ProfileState {
+class ProfileDoneState extends ProfileState {
   final ProfileResponse profileResponse;
 
   ProfileDoneState({required this.profileResponse});
+
+  @override
+  List<Object?> get props => [profileResponse];
 }
+
+// part of 'profile_bloc.dart';
+
+// @immutable
+// sealed class ProfileState {}
+
+// final class ProfileInitial extends ProfileState {}
+
+// final class ProfileInLoadingState extends ProfileState {}
+
+// final class ProfileLoadingFailure extends ProfileState {
+//   final HelperResponse helperResponse;
+
+//   ProfileLoadingFailure({required this.helperResponse});
+// }
+
+// final class ProfileDoneState extends ProfileState {
+//   final ProfileResponse profileResponse;
+
+//   ProfileDoneState({required this.profileResponse});
+// }
