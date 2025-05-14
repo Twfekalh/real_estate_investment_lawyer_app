@@ -42,6 +42,7 @@ class HomePageViewBody extends StatelessWidget {
                 "startColor": AppColors.teal,
                 "endColor": AppColors.darkGreen,
                 "imageIcon": AppAssets.business,
+                "buyRequestObject": buyRequest,
               },
             ),
           ];
@@ -89,7 +90,10 @@ class HomePageViewBody extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             if (item["imageIcon"] == AppAssets.business) {
-                              GoRouter.of(context).push(AppRouter.kBayView);
+                              final buyRequest = item["buyRequestObject"];
+                              GoRouter.of(
+                                context,
+                              ).push(AppRouter.kBuyView, extra: buyRequest);
                             } else if (item["imageIcon"] == AppAssets.law) {
                               final legalCheck = item["legalCheckObject"];
                               GoRouter.of(

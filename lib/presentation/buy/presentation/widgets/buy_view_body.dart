@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/presentation/buy/widgets/image_bay_section.dart';
+import 'package:lawyer_app/presentation/buy/presentation/widgets/image_bay_section.dart';
 
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
+import 'package:lawyer_app/presentation/home%20page/data/model/home/buy_request.page.model.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 
-class BayViewBody extends StatelessWidget {
-  BayViewBody({super.key});
+class BuyViewBody extends StatelessWidget {
+  final BuyRequest buyRequest;
+  BuyViewBody({super.key, required this.buyRequest});
   final List<String> idImages = List.filled(2, 'assets/images/sample.png');
 
   @override
@@ -64,26 +66,29 @@ class BayViewBody extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text('Name : Ali Emad Mossa', style: TextStyle(fontSize: 16)),
-                  SizedBox(height: 6),
+                children: [
                   Text(
-                    'Born : 23/7/1990 Latakia',
+                    'Name : ${buyRequest.userName}',
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'ID number : 00995544223311',
+                    'Born : ${buyRequest.createdAt}',
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'Property type : apartment',
+                    'ID number : ${buyRequest.id}',
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'Location : Damascus/Mazeh/Alhoda Circle/112 Building/4th floor.',
+                    'Property type : ${buyRequest.propertyType}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 6),
+                  Text(
+                    'Location : ${buyRequest.location}',
                     style: TextStyle(fontSize: 20),
                   ),
                 ],

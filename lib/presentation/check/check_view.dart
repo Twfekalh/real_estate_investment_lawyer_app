@@ -7,6 +7,7 @@ import 'package:lawyer_app/untility/app_color.dart' show AppColors;
 
 class CheckView extends StatelessWidget {
   final LegalCheck legalCheck;
+
   const CheckView({super.key, required this.legalCheck});
 
   @override

@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/auth/login_view.dart';
-import 'package:lawyer_app/presentation/buy/buy_view.dart';
+import 'package:lawyer_app/presentation/buy/presentation/buy_view.dart';
 import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
 import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
 
@@ -10,6 +10,7 @@ import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
 import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
+import 'package:lawyer_app/presentation/home%20page/data/model/home/buy_request.page.model.dart';
 import 'package:lawyer_app/presentation/home%20page/data/model/home/legal_check.page.model.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/widget/complated_page_view.dart';
@@ -27,7 +28,7 @@ abstract class AppRouter {
   static const kRefuseReasonBottomSheet = '/RefuseReasonBottomSheet';
   static const kCheckDocumentView = '/CheckDocumentView';
   static const kCommonQuestion = '/CommonQuestion';
-  static const kBayView = '/BayView';
+  static const kBuyView = '/BuyView';
   static const kComplatedPageView = '/ComplatedPageView';
   static const kLoginView = '/LoginView';
 
@@ -51,7 +52,13 @@ abstract class AppRouter {
         path: kRefuseReasonBottomSheet,
         builder: (context, state) => const RefuseReasonBottomSheet(),
       ),
-      GoRoute(path: kBayView, builder: (context, state) => const BayView()),
+      GoRoute(
+        path: kBuyView,
+        builder: (context, state) {
+          final buyRequest = state.extra as BuyRequest;
+          return BuyView(buyRequest: buyRequest);
+        },
+      ),
       GoRoute(
         path: kCheckView,
         builder: (context, state) {
