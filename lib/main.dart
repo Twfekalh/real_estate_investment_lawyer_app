@@ -5,6 +5,10 @@ import 'package:lawyer_app/core/handle_cash.dart';
 import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
 import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
+import 'package:lawyer_app/presentation/check/data/models/Accept/Accept_pesponse.dart';
+import 'package:lawyer_app/presentation/check/data/models/reject/reject_response.dart';
+import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
+import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/bloc/home_bloc.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
@@ -40,6 +44,9 @@ class LawyerApp extends StatelessWidget {
               (context) =>
                   HomeBloc(getIt.get<HomeRepoImpl>())
                     ..add(FetchHomeDataEvent()),
+        ),
+        BlocProvider(
+          create: (context) => CheckBloc(getIt.get<LegalCheckRepo>()),
         ),
       ],
       child: MaterialApp.router(

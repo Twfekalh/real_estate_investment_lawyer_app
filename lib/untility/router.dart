@@ -10,6 +10,7 @@ import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
 import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
+import 'package:lawyer_app/presentation/home%20page/data/model/home/legal_check.page.model.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/widget/complated_page_view.dart';
 import 'package:lawyer_app/presentation/profile/profile_view.dart';
@@ -51,7 +52,14 @@ abstract class AppRouter {
         builder: (context, state) => const RefuseReasonBottomSheet(),
       ),
       GoRoute(path: kBayView, builder: (context, state) => const BayView()),
-      GoRoute(path: kCheckView, builder: (context, state) => const CheckView()),
+      GoRoute(
+        path: kCheckView,
+        builder: (context, state) {
+          final legalCheck = state.extra as LegalCheck;
+          return CheckView(legalCheck: legalCheck);
+        },
+      ),
+
       GoRoute(
         path: kCheckPropertyView,
         builder: (context, state) => const CheckPropertyView(),

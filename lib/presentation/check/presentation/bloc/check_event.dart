@@ -1,29 +1,28 @@
-// part of 'check_bloc.dart';
+part of 'check_bloc.dart';
 
-// @immutable
-// sealed class CheckEvent {}
+/// الأحداث التي يمكن أن تحدث على الـ CheckBloc
+sealed class CheckEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
-// /// Load all legal-check and buy-request items
-// class GetAllRequestsEvent extends CheckEvent {
-//   @override
-//   List<Object?> get props => [];
-// }
+/// قبول طلب فحص قانوني
+class AcceptRequestEvent extends CheckEvent {
+  final int requestId;
 
-// /// Accept a specific legal-check request
-// class AcceptRequestEvent extends CheckEvent {
-//   final int requestId;
-//   AcceptRequestEvent(this.requestId);
+  AcceptRequestEvent(this.requestId);
 
-//   @override
-//   List<Object?> get props => [requestId];
-// }
+  @override
+  List<Object?> get props => [requestId];
+}
 
-// /// Reject a specific legal-check request with a reason
-// class RejectRequestEvent extends CheckEvent {
-//   final int requestId;
-//   final String reason;
-//   RejectRequestEvent(this.requestId, this.reason);
+/// رفض طلب فحص قانوني
+class RejectRequestEvent extends CheckEvent {
+  final int requestId;
+  final String reason;
 
-//   @override
-//   List<Object?> get props => [requestId, reason];
-// }
+  RejectRequestEvent(this.requestId, this.reason);
+
+  @override
+  List<Object?> get props => [requestId, reason];
+}

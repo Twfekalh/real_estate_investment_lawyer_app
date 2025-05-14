@@ -1,79 +1,58 @@
-// import 'package:lawyer_app/config/api_config.dart';
-// import 'package:lawyer_app/core/api_service.dart';
-// import 'package:lawyer_app/core/constant.dart';
-// import 'package:lawyer_app/core/enums.dart';
-// import 'package:lawyer_app/presentation/check/data/models/check/Accept/Accept_pesponse.dart';
-// import 'package:lawyer_app/presentation/check/data/models/check/check_pesponse.dart';
-// import 'package:lawyer_app/presentation/check/data/models/check/reject/reject_response.dart';
-// import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
-// import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart';
+import 'package:lawyer_app/config/api_config.dart';
+import 'package:lawyer_app/core/api_service.dart';
+import 'package:lawyer_app/core/constant.dart';
+import 'package:lawyer_app/core/enums.dart';
+import 'package:lawyer_app/presentation/check/data/models/Accept/Accept_pesponse.dart';
+import 'package:lawyer_app/presentation/check/data/models/reject/reject_response.dart';
 
-// class LegalCheckRepoImpl implements LegalCheckRepo {
-//   final ApiService _apiService;
+import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
+import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart';
 
-//   LegalCheckRepoImpl(this._apiService);
+class LegalCheckRepoImpl implements LegalCheckRepo {
+  final ApiService _apiService;
 
-//   @override
-//   Future getAllRequests(GetAllRequestsEvent event) async {
-//     final helperResponse = await _apiService.get(
-//       endpoint: ApiConfig.getAllRequests,
-//       token: token,
-//     );
+  LegalCheckRepoImpl(this._apiService);
 
-//     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
-//       try {
-//         final response = CheckResponse.fromJson(helperResponse.fullBody!);
-//         return response;
-//       } catch (e) {
-//         return helperResponse.copyWith(
-//           servicesResponse: ServicesResponseStatues.modelError,
-//         );
-//       }
-//     }
+  @override
+  Future acceptRequest(AcceptRequestEvent event) async {
+    final helperResponse = await _apiService.post(
+      endpoint: '${ApiConfig.acceptRequest}/${event.requestId}',
+      token: token,
+    );
 
-//     return helperResponse;
-//   }
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+      try {
+        final response = AcceptResponse.fromJson(helperResponse.fullBody!);
+        return response;
+      } catch (e) {
+        return helperResponse.copyWith(
+          servicesResponse: ServicesResponseStatues.modelError,
+        );
+      }
+    }
 
-//   @override
-//   Future acceptRequest(AcceptRequestEvent event) async {
-//     final helperResponse = await _apiService.post(
-//       endpoint: '${ApiConfig.acceptRequest}/${event.requestId}',
-//       token: token,
-//     );
+    return helperResponse;
+  }
 
-//     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
-//       try {
-//         final response = AcceptResponse.fromJson(helperResponse.fullBody!);
-//         return response;
-//       } catch (e) {
-//         return helperResponse.copyWith(
-//           servicesResponse: ServicesResponseStatues.modelError,
-//         );
-//       }
-//     }
+  @override
+  Future rejectRequest(RejectRequestEvent event) async {
+    final helperResponse = await _apiService.post(
+      endpoint: '${ApiConfig.rejectRequest}/${event.requestId}',
+      token: token,
+      data: {'description': event.reason},
+    );
 
-//     return helperResponse;
-//   }
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+      try {
+        final response = RejectResponse.fromJson(helperResponse.fullBody!);
+        return response;
+      } catch (e) {
+        return helperResponse.copyWith(
+          servicesResponse: ServicesResponseStatues.modelError,
+        );
+      }
+    }
 
-//   @override
-//   Future rejectRequest(RejectRequestEvent event) async {
-//     final helperResponse = await _apiService.post(
-//       endpoint: '${ApiConfig.rejectRequest}/${event.requestId}',
-//       token: token,
-//       data: {'description': event.reason},
-//     );
-
-//     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
-//       try {
-//         final response = RejectResponse.fromJson(helperResponse.fullBody!);
-//         return response;
-//       } catch (e) {
-//         return helperResponse.copyWith(
-//           servicesResponse: ServicesResponseStatues.modelError,
-//         );
-//       }
-//     }
-
-//     return helperResponse;
-//   }
-// }
+    return helperResponse;
+  }
+}

@@ -1,34 +1,31 @@
-// part of 'check_bloc.dart';
+part of 'check_bloc.dart';
 
-// @immutable
-// sealed class CheckState {}
+/// الحالة العامة للأحداث
+sealed class CheckState {}
 
-// /// Initial state before any action
-// final class CheckInitial extends CheckState {}
+/// الحالة الأولية عند تشغيل الـ BLoC
+final class CheckInitial extends CheckState {}
 
-// /// Loading state during API calls
-// final class CheckInLoadingState extends CheckState {}
+/// الحالة التي تظهر أثناء تحميل البيانات
+final class CheckInLoadingState extends CheckState {}
 
-// /// Failure state with the low-level helper response
-// final class CheckLoadingFailure extends CheckState {
-//   final HelperResponse helperResponse;
-//   CheckLoadingFailure({required this.helperResponse});
-// }
+/// الحالة التي تظهر إذا فشل الطلب لأي سبب
+final class CheckLoadingFailure extends CheckState {
+  final HelperResponse helperResponse;
 
-// /// State when GET all requests succeeds
-// final class CheckGetAllDoneState extends CheckState {
-//   final CheckResponse checkResponse;
-//   CheckGetAllDoneState({required this.checkResponse});
-// }
+  CheckLoadingFailure({required this.helperResponse});
+}
 
-// /// State when accept request succeeds
-// final class AcceptDoneState extends CheckState {
-//   final AcceptResponse acceptResponse;
-//   AcceptDoneState({required this.acceptResponse});
-// }
+/// الحالة عند نجاح قبول الطلب
+final class AcceptDoneState extends CheckState {
+  final AcceptResponse acceptResponse;
 
-// /// State when reject request succeeds
-// final class RejectDoneState extends CheckState {
-//   final RejectResponse rejectResponse;
-//   RejectDoneState({required this.rejectResponse});
-// }
+  AcceptDoneState({required this.acceptResponse});
+}
+
+/// الحالة عند نجاح رفض الطلب
+final class RejectDoneState extends CheckState {
+  final RejectResponse rejectResponse;
+
+  RejectDoneState({required this.rejectResponse});
+}

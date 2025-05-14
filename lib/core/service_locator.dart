@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:lawyer_app/config/api_config.dart';
 import 'package:lawyer_app/core/api_service.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
+import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
 import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
@@ -27,8 +28,8 @@ void setupServiceLocator() {
   getIt.registerSingleton<ProfileRepoImpl>(
     ProfileRepoImpl(getIt.get<ApiService>()),
   );
-  // getIt.registerSingleton<LegalCheckRepoImpl>(
-  //   LegalCheckRepoImpl(getIt.get<ApiService>()),
-  // );
   getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<LegalCheckRepo>(
+    LegalCheckRepoImpl(getIt.get<ApiService>()),
+  );
 }
