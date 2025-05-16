@@ -9,7 +9,7 @@ import 'package:lawyer_app/presentation/check%20property/check_property_view.dar
 import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
-import 'package:lawyer_app/presentation/help/widgets/common_question.dart';
+import 'package:lawyer_app/presentation/help/presentation/widgets/common_question.dart';
 import 'package:lawyer_app/presentation/home%20page/data/model/home/buy_request.page.model.dart';
 import 'package:lawyer_app/presentation/home%20page/data/model/home/legal_check.page.model.dart';
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';

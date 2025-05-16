@@ -9,6 +9,9 @@ import 'package:lawyer_app/presentation/check/data/models/Accept/Accept_pesponse
 import 'package:lawyer_app/presentation/check/data/models/reject/reject_response.dart';
 import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
 import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart';
+import 'package:lawyer_app/presentation/help/data/repo/help_repo.dart';
+import 'package:lawyer_app/presentation/help/data/repo/help_repo_impl.dart';
+import 'package:lawyer_app/presentation/help/presentation/bloc/help_bloc.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/bloc/home_bloc.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
@@ -48,6 +51,7 @@ class LawyerApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CheckBloc(getIt.get<LegalCheckRepo>()),
         ),
+        BlocProvider(create: (context) => HelpBloc(getIt.get<HelpRepoImpl>())),
       ],
       child: MaterialApp.router(
         builder: EasyLoading.init(),

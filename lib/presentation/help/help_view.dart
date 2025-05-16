@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/presentation/help/widgets/help_view_item.dart';
+import 'package:lawyer_app/presentation/help/presentation/widgets/help_view_item.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 import 'package:lawyer_app/untility/router.dart';
 

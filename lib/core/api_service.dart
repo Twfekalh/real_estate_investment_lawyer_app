@@ -50,7 +50,7 @@ class ApiService {
     try {
       var response = await _dio.post(endpoint, data: data);
       print('iiiisss');
-      print(data);
+      //print(data);
       print("Response data: ${response.data}"); // Debug log
 
       return HelperResponse(

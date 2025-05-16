@@ -18,6 +18,7 @@ class LegalCheckRepoImpl implements LegalCheckRepo {
     final helperResponse = await _apiService.post(
       endpoint: '${ApiConfig.acceptRequest}/${event.requestId}',
       token: token,
+      // endpoint: ApiConfig.acceptRequest,
     );
 
     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
@@ -44,6 +45,7 @@ class LegalCheckRepoImpl implements LegalCheckRepo {
 
     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
       try {
+        print('Raw JSON from API in acceptRequest: ${helperResponse.fullBody}');
         final response = RejectResponse.fromJson(helperResponse.fullBody!);
         return response;
       } catch (e) {

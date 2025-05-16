@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart';
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
@@ -21,12 +22,16 @@ class CheckViewBody extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text('تم قبول الطلب بنجاح')));
-          GoRouter.of(context).pop();
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            GoRouter.of(context).go(AppRouter.kHomePageView);
+          });
         } else if (state is RejectDoneState) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text('تم رفض الطلب بنجاح')));
-          GoRouter.of(context).pop();
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            GoRouter.of(context).go(AppRouter.kHomePageView);
+          });
         } else if (state is CheckLoadingFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('خطأ: ${state.helperResponse.response}')),
@@ -34,12 +39,6 @@ class CheckViewBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is CheckInLoadingState) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
-
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -84,125 +83,138 @@ class CheckViewBody extends StatelessWidget {
             ],
             iconTheme: const IconThemeData(color: Colors.black),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // بطاقة بيانات الطلب
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Request ID: ${legalCheck.id}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'User: ${legalCheck.userName}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Status: ${legalCheck.status}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Description: ${legalCheck.description}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Property Type: ${legalCheck.propertyType}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Location: ${legalCheck.location}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Created At: ${legalCheck.createdAt}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
+          body: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
                 ),
-                const SizedBox(height: 20),
-
-                // زر Description Information
-                PressableButton(
-                  text: 'Description Information',
-                  initialColor: AppColors.lightPurple,
-                  pressedColor: AppColors.lightPurple100,
-                  onTap: () {
-                    GoRouter.of(
-                      context,
-                    ).push(AppRouter.kCheckPropertyView, extra: legalCheck);
-                  },
-                ),
-                const SizedBox(height: 30),
-
-                // زر قبول الطلب
-                PressableButton(
-                  text: 'Accept Request',
-                  initialColor: AppColors.lightPurple,
-                  pressedColor: AppColors.lightPurple100,
-                  onTap: () {
-                    GoRouter.of(
-                      context,
-                    ).push(AppRouter.kCheckDocumentView, extra: legalCheck);
-                  },
-                ),
-
-                const Spacer(),
-
-                // زر Done (إغلاق الشاشة يدويًا)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
-                  child: Center(
-                    child: SizedBox(
-                      width: 200,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // هنا نرسل حدث القبول
-                          context.read<CheckBloc>().add(
-                            AcceptRequestEvent(legalCheck.id!),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.lightPurple100,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            side: const BorderSide(
-                              color: AppColors.lightPurple,
-                              width: 1,
-                            ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // بطاقة بيانات الطلب
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Request ID: ${legalCheck.id}',
+                            style: const TextStyle(fontSize: 16),
                           ),
-                        ),
-                        child: const Text(
-                          'Done',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.lightPurple,
+                          const SizedBox(height: 6),
+                          Text(
+                            'User: ${legalCheck.userName}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Status: ${legalCheck.status}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Description: ${legalCheck.description}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Property Type: ${legalCheck.propertyType}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Location: ${legalCheck.location}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Created At: ${legalCheck.createdAt}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // زر Description Information
+                    PressableButton(
+                      text: 'Description Information',
+                      initialColor: AppColors.lightPurple,
+                      pressedColor: AppColors.lightPurple100,
+                      onTap: () {
+                        GoRouter.of(
+                          context,
+                        ).push(AppRouter.kCheckPropertyView, extra: legalCheck);
+                      },
+                    ),
+                    const SizedBox(height: 30),
+
+                    // زر Check Documents
+                    PressableButton(
+                      text: 'Check Documents',
+                      initialColor: AppColors.lightPurple,
+                      pressedColor: AppColors.lightPurple100,
+                      onTap: () {
+                        GoRouter.of(
+                          context,
+                        ).push(AppRouter.kCheckDocumentView, extra: legalCheck);
+                      },
+                    ),
+
+                    const Spacer(),
+
+                    // زر Done (للقبول)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0),
+                      child: Center(
+                        child: SizedBox(
+                          width: 200,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.read<CheckBloc>().add(
+                                AcceptRequestEvent(legalCheck.id!),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.lightPurple100,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                side: const BorderSide(
+                                  color: AppColors.lightPurple,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            child: const Text(
+                              'Done',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.lightPurple,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+
+              // مؤشّر التحميل فوق المحتوى في حالة Loading
+              if (state is CheckInLoadingState)
+                Container(
+                  color: Colors.black38,
+                  child: const Center(child: CircularProgressIndicator()),
+                ),
+            ],
           ),
         );
       },
