@@ -42,17 +42,21 @@ class _CommonQuestionState extends State<CommonQuestion> {
           if (state is HelpLoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state is HelpErrorState) {
-            return Center(
-              child: Text(
-                'Error: ${state.helperResponse.message}',
-                style: const TextStyle(color: Colors.red),
-              ),
-            );
-          }
           if (state is HelpLoadedState) {
+            final helpResponse = state.helpResponse;
+            final rawData = helpResponse.data ?? [];
+
+            if (rawData.isEmpty) {
+              return const Center(
+                child: Text(
+                  'لا توجد أسئلة شائعة حتى الآن.',
+                  style: TextStyle(fontSize: 16),
+                ),
+              );
+            }
+
             final faqs =
-                state.helpResponse.data!
+                rawData
                     .map(
                       (item) => FAQItem(
                         question: item['question'] as String,

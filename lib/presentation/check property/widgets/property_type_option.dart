@@ -4,12 +4,14 @@ class PropertyTypeOption extends StatelessWidget {
   final String label;
   final String? groupValue;
   final ValueChanged<String?>? onChanged;
+  final Color fillColor;
 
   const PropertyTypeOption({
     super.key,
     required this.label,
     required this.groupValue,
     required this.onChanged,
+    this.fillColor = Colors.blue,
   });
 
   @override
@@ -21,6 +23,7 @@ class PropertyTypeOption extends StatelessWidget {
           value: label,
           groupValue: groupValue,
           onChanged: onChanged,
+          activeColor: fillColor,
         ),
         Text(label, style: const TextStyle(fontSize: 14)),
       ],

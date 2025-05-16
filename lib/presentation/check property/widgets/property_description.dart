@@ -75,12 +75,14 @@ class _PropertyDescriptionWidgetState extends State<PropertyDescriptionWidget> {
         ),
         NumberPicker(label: 'Overlook from 10:', value: overlook),
         NumberPicker(label: 'Balcony size:', value: balconySize, suffix: 'm²'),
+
         DropdownField(
           label: 'Painting type:',
           items: paintingTypes,
           selectedValue: selectedPainting,
           onChanged: (val) => setState(() => selectedPainting = val),
         ),
+        SizedBox(height: 2),
       ],
     );
   }

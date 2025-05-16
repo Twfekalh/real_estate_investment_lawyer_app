@@ -44,7 +44,7 @@ class CheckPropertyView extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Expanded(
             child: CustomScrollView(
               slivers: [
@@ -53,17 +53,18 @@ class CheckPropertyView extends StatelessWidget {
                     spacing: 10,
                     children: [
                       CheckPropertyContainer(
-                        height: 90,
+                        //    height: 90,
                         child: PropertyTypeWidget(),
                       ),
 
                       const SizedBox(height: 0),
                       CheckPropertyContainer(
-                        height: 575,
+                        //  height: 575,
                         child: PropertyDescriptionWidget(),
                       ),
+                      SizedBox(height: 4),
                       CheckPropertyContainer(
-                        height: 150,
+                        //height: 150,
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Column(
@@ -107,7 +108,7 @@ class CheckPropertyView extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 8),
-                              Row(
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -118,20 +119,23 @@ class CheckPropertyView extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Container(
-                                      height: 50,
-                                      padding: const EdgeInsets.all(8),
-                                      alignment: Alignment.topLeft,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: const Text(
-                                        'Near Omayyad Square, Building 12, Floor 3',
-                                        style: TextStyle(fontSize: 14),
-                                      ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ), // مسافة صغيرة بين العنوان والصندوق
+                                  Container(
+                                    width: double.infinity,
+                                    constraints: const BoxConstraints(
+                                      minHeight: 12,
+                                    ),
+                                    padding: const EdgeInsets.all(8),
+                                    alignment: Alignment.topLeft,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Text(
+                                      'Near Omayyad Square,Building 12, Floor 3',
+                                      style: TextStyle(fontSize: 14),
                                     ),
                                   ),
                                 ],
