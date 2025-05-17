@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyer_app/presentation/check%20property/widgets/property_type_option.dart';
+import 'package:lawyer_app/presentation/check%20property/presentation/widgets/property_type_option.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 
 class PropertyTypeWidget extends StatefulWidget {
@@ -44,19 +44,6 @@ class _PropertyTypeWidgetState extends State<PropertyTypeWidget> {
                 }
               },
             ),
-            // PropertyTypeOption(
-            //   label: 'Apartment',
-            //   groupValue: _selectedType,
-            //   fillColor: AppColors.darkGreen,
-            //   onChanged: (value) {
-            //     if (value != null) {
-            //       setState(() {
-            //         _selectedType = value;
-            //       });
-            //     }
-            //   },
-            // ),
-            // يمكنك إضافة خيارات إضافية هنا
           ],
         ),
       ],

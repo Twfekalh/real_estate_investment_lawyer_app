@@ -17,4 +17,5 @@ class ApiConfig {
   static const String rejectRequest = 'api/reject_Request';
   static const String homeEndpoint = 'api/get_all_Request';
   static const String getFrequentlyQuestions = 'api/get_FrequentlyQuestions';
+  static const String getCheckPropertyById = 'api/get_properties_by_id/1';
 }
