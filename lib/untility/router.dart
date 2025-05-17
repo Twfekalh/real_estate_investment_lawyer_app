@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/presentation/auth/login_view.dart';
 import 'package:lawyer_app/presentation/buy/presentation/buy_view.dart';
 import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
@@ -6,6 +8,8 @@ import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
 
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
 import 'package:lawyer_app/presentation/check%20property/check_property_view.dart';
+import 'package:lawyer_app/presentation/check%20property/data/repo/check_property_repo_impl.dart';
+import 'package:lawyer_app/presentation/check%20property/presentation/bloc/check_proparty_bloc.dart';
 import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
@@ -66,11 +70,25 @@ abstract class AppRouter {
           return CheckView(legalCheck: legalCheck);
         },
       ),
-
       GoRoute(
         path: kCheckPropertyView,
-        builder: (context, state) => const CheckPropertyView(),
+        builder: (context, state) {
+          // 1. استخرج الـ propertyId من extra
+          final propertyId = state.extra as int;
+          // 2. أنشئ الـ Bloc ومرّره للـ View
+          return BlocProvider(
+            create:
+                (_) =>
+                    CheckPropertyBloc(getIt.get<CheckPropertyRepoImpl>())
+                      ..add(FetchCheckPropertyByIdEvent(propertyId)),
+            child: CheckPropertyView(propertyId: propertyId),
+          );
+        },
       ),
+      // GoRoute(
+      //   path: kCheckPropertyView,
+      //   builder: (context, state) => const CheckPropertyView(),
+      // ),
       GoRoute(
         path: kCheckDocumentView,
         builder: (context, state) => CheckDocumentView(),

@@ -12,11 +12,8 @@ class CheckPropertyRepoImpl implements CheckPropertyRepo {
 
   @override
   Future<dynamic> fetchPropertyById(FetchCheckPropertyByIdEvent event) async {
-    // ننشئ المسار النهائي بإضافة المعرف
-    // final endpoint = '${ApiConfig.getPropertyById}/${event.id}';
-    // نبعت طلب GET
     final helperResponse = await _apiService.get(
-      endpoint: ApiConfig.getCheckPropertyById,
+      endpoint: '${ApiConfig.getCheckPropertyById}/${event.id}',
       // لا حاجة لهيدر توكن هنا بحسب كلامك
     );
 

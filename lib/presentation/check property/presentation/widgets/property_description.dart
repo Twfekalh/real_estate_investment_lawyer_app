@@ -1,76 +1,57 @@
+// lib/presentation/check_property/presentation/widgets/property_description_widget.dart
+
 import 'package:flutter/material.dart';
 
-import 'package:lawyer_app/presentation/check%20property/data/model/check/data.property.dart';
-import 'drop_down_field.dart';
-import 'number_picker.dart';
-
 class PropertyDescriptionWidget extends StatelessWidget {
-  final CheckProperty property;
+  final String space;
+  final int numberOfRooms;
+  final String stateName;
+  final String exactPosition;
+  final String propertyType;
 
-  const PropertyDescriptionWidget({super.key, required this.property});
+  const PropertyDescriptionWidget({
+    super.key,
+    required this.space,
+    required this.numberOfRooms,
+    required this.stateName,
+    required this.exactPosition,
+    required this.propertyType,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 22,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.all(12.0),
-          child: Text('Property Descriptions:', style: TextStyle(fontSize: 15)),
+        const Text(
+          'Property Description',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        NumberPicker(
-          label: 'Space:',
-          value: int.parse(property.area ?? ''),
-          suffix: 'm²',
-        ),
-        NumberPicker(
-          label: 'Number of rooms:',
-          value: property.numberOfRooms ?? 0,
-        ),
-        NumberPicker(
-          label: 'Number of bathrooms:',
-          value: property.numberOfBathrooms ?? 0,
-        ),
-        NumberPicker(
-          label: 'Property age:',
-          value: property.propertyAge ?? 0,
-          suffix: 'year',
-        ),
-        DropdownField(
-          label: 'Decoration:',
-          items: [property.decoration ?? ''],
-          selectedValue: property.decoration ?? '',
-          onChanged: (_) {},
-        ),
-        DropdownField(
-          label: 'Kitchen type:',
-          items: [property.kitchenType ?? ''],
-          selectedValue: property.kitchenType ?? '',
-          onChanged: (_) {},
-        ),
-        DropdownField(
-          label: 'Flooring type:',
-          items: [property.flooringType ?? ''],
-          selectedValue: property.flooringType ?? '',
-          onChanged: (_) {},
-        ),
-        NumberPicker(
-          label: 'Overlook from 10:',
-          value: property.overlookFrom ?? 0,
-        ),
-        NumberPicker(
-          label: 'Balcony size:',
-          value: int.parse(property.balconySize ?? ''),
-          suffix: 'm²',
-        ),
-        DropdownField(
-          label: 'Painting type:',
-          items: [property.paintingType ?? ''],
-          selectedValue: property.paintingType ?? '',
-          onChanged: (_) {},
-        ),
+        const SizedBox(height: 12),
+        _buildInfoRow("Type", propertyType),
+        _buildInfoRow("Space (m²)", space),
+        _buildInfoRow("Number of Rooms", numberOfRooms.toString()),
+        _buildInfoRow("State", stateName),
+        _buildInfoRow("Exact Position", exactPosition),
       ],
+    );
+  }
+
+  Widget _buildInfoRow(String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Text("$title:", style: const TextStyle(fontSize: 14)),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(value, style: const TextStyle(fontSize: 14)),
+          ),
+        ],
+      ),
     );
   }
 }
