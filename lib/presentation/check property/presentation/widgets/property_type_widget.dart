@@ -46,6 +46,7 @@ class _PropertyTypeWidgetState extends State<PropertyTypeWidget> {
             ),
           ],
         ),
+        SizedBox(height: 8),
       ],
     );
   }

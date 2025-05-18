@@ -17,6 +17,7 @@ class CheckPropertyContainer extends StatelessWidget {
         color: const Color(0x7FE8E8E8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
+
       child: child,
     );
   }

@@ -36,7 +36,7 @@ void setupServiceLocator() {
     LegalCheckRepoImpl(getIt.get<ApiService>()),
   );
   getIt.registerSingleton<HelpRepoImpl>(HelpRepoImpl(getIt.get<ApiService>()));
-  getIt.registerSingleton<CheckPropertyRepo>(
+  getIt.registerSingleton<CheckPropertyRepoImpl>(
     CheckPropertyRepoImpl(getIt.get<ApiService>()),
   );
 }

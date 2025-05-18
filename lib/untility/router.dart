@@ -73,15 +73,12 @@ abstract class AppRouter {
       GoRoute(
         path: kCheckPropertyView,
         builder: (context, state) {
-          // 1. استخرج الـ propertyId من extra
           final propertyId = state.extra as int;
-          // 2. أنشئ الـ Bloc ومرّره للـ View
+
           return BlocProvider(
             create:
-                (_) =>
-                    CheckPropertyBloc(getIt.get<CheckPropertyRepoImpl>())
-                      ..add(FetchCheckPropertyByIdEvent(propertyId)),
-            child: CheckPropertyView(propertyId: propertyId),
+                (_) => CheckPropertyBloc(getIt.get<CheckPropertyRepoImpl>()),
+            child: CheckPropertyView(propertyId: propertyId.toString()),
           );
         },
       ),
