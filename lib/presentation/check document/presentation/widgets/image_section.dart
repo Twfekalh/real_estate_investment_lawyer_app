@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyer_app/presentation/check%20document/widgets/full_image_view.dart';
+import 'package:lawyer_app/presentation/check%20document/presentation/widgets/full_image_view.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 
 class ImageSection extends StatelessWidget {
@@ -25,7 +25,7 @@ class ImageSection extends StatelessWidget {
               title,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(

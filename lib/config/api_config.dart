@@ -18,4 +18,5 @@ class ApiConfig {
   static const String homeEndpoint = 'api/get_all_Request';
   static const String getFrequentlyQuestions = 'api/get_FrequentlyQuestions';
   static const String getCheckPropertyById = 'api/get_properties_by_id';
+  static const String getCheckDocumentById = 'api/get_image_for_property_by_id';
 }

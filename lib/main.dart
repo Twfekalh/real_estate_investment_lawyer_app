@@ -5,6 +5,8 @@ import 'package:lawyer_app/core/handle_cash.dart';
 import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/data/repositories/auth_repo_impl.dart';
 import 'package:lawyer_app/presentation/auth/bloc/user_bloc.dart';
+import 'package:lawyer_app/presentation/check%20document/data/repo/check_document_repo_impl.dart';
+import 'package:lawyer_app/presentation/check%20document/presentation/bloc/check_document_bloc.dart';
 import 'package:lawyer_app/presentation/check%20property/data/repo/check_property_repo_impl.dart';
 import 'package:lawyer_app/presentation/check%20property/presentation/bloc/check_proparty_bloc.dart';
 import 'package:lawyer_app/presentation/check/data/models/Accept/Accept_pesponse.dart';
@@ -58,6 +60,11 @@ class LawyerApp extends StatelessWidget {
           create:
               (context) =>
                   CheckPropertyBloc(getIt.get<CheckPropertyRepoImpl>()),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+                  CheckDocumentBloc(getIt.get<CheckDocumentRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(

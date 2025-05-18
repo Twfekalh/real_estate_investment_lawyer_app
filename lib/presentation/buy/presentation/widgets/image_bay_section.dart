@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyer_app/presentation/check%20document/widgets/full_image_view.dart'
+import 'package:lawyer_app/presentation/check%20document/presentation/widgets/full_image_view.dart'
     show FullImageView;
 import 'package:lawyer_app/untility/app_color.dart';
 
