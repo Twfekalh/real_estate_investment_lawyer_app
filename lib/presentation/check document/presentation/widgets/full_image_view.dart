@@ -10,7 +10,8 @@ class FullImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PhotoView(
-        imageProvider: AssetImage(imagePath),
+        imageProvider: NetworkImage(imagePath),
+
         backgroundDecoration: BoxDecoration(color: Colors.black),
       ),
     );

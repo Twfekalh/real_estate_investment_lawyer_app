@@ -1,6 +1,9 @@
+// import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lawyer_app/presentation/check%20document/presentation/widgets/full_image_view.dart';
 import 'package:lawyer_app/untility/app_color.dart';
+import 'package:lawyer_app/config/api_config.dart'; // تأكد أنك تستورد هذا
 
 class ImageSection extends StatelessWidget {
   final String title;
@@ -25,7 +28,7 @@ class ImageSection extends StatelessWidget {
               title,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 65),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -38,27 +41,28 @@ class ImageSection extends StatelessWidget {
                 itemCount: images.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
                 ),
                 itemBuilder: (context, index) {
+                  final fullUrl = '${ApiConfig.baseUrl}${images[index]}';
+
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder:
-                              (_) => FullImageView(imagePath: images[index]),
+                          builder: (_) => FullImageView(imagePath: fullUrl),
                         ),
                       );
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: AssetImage(images[index]),
-                          fit: BoxFit.cover,
-                        ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        fullUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder:
+                            (context, error, stackTrace) =>
+                                const Icon(Icons.broken_image),
                       ),
                     ),
                   );

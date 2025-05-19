@@ -7,6 +7,9 @@ import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
 import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
 
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
+import 'package:lawyer_app/presentation/check%20document/data/model/check/data.document.dart';
+import 'package:lawyer_app/presentation/check%20document/data/repo/check_document_repo_impl.dart';
+import 'package:lawyer_app/presentation/check%20document/presentation/bloc/check_document_bloc.dart';
 import 'package:lawyer_app/presentation/check%20property/check_property_view.dart';
 import 'package:lawyer_app/presentation/check%20property/data/repo/check_property_repo_impl.dart';
 import 'package:lawyer_app/presentation/check%20property/presentation/bloc/check_proparty_bloc.dart';
@@ -85,10 +88,28 @@ abstract class AppRouter {
       // GoRoute(
       //   path: kCheckPropertyView,
       //   builder: (context, state) => const CheckPropertyView(),
+      // )
+      // GoRoute(
+      //   path: kCheckDocumentView,
+      //   builder: (context, state) {
+      //     final propertyId = state.extra as int;
+      //     return BlocProvider(
+      //       create:
+      //           (_) => CheckDocumentBloc(getIt.get<CheckDocumentRepoImpl>()),
+      //       child: CheckDocumentView(propertyId: propertyId.toString()),
+      //     );
+      //   },
       // ),
       GoRoute(
         path: kCheckDocumentView,
-        builder: (context, state) => CheckDocumentView(),
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) =>
+                      CheckDocumentBloc(getIt.get<CheckDocumentRepoImpl>())
+                        ..add(FetchCheckDocumentByIdEvent(1)),
+              child: const CheckDocumentView(),
+            ),
       ),
       GoRoute(
         path: kResetPasswordView,
