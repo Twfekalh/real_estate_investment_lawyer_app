@@ -20,4 +20,5 @@ class ApiConfig {
   static const String getCheckPropertyById = 'api/get_properties_by_id';
   static const String getCheckDocumentById = 'api/get_image_for_property_by_id';
   static const String addImageForDocument = 'api/add_image_for_Document/1';
+  static const String getBuyRequestCompleted = 'api/get_buy_request_completed';
 }

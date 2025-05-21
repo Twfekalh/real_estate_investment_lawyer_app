@@ -10,6 +10,7 @@ import 'package:lawyer_app/presentation/check%20property/data/repo/check_propert
 import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
 import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo_impl.dart';
 import 'package:lawyer_app/presentation/help/data/repo/help_repo_impl.dart';
+import 'package:lawyer_app/presentation/home%20page/data/repo/complate%20repo/complate_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
 
@@ -46,5 +47,8 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<AddImagesRepoImpl>(
     AddImagesRepoImpl(getIt.get<ApiService>()),
+  );
+  getIt.registerSingleton<ComplateRepoImpl>(
+    ComplateRepoImpl(getIt.get<ApiService>()),
   );
 }

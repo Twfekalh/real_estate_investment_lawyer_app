@@ -18,7 +18,9 @@ import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart'
 import 'package:lawyer_app/presentation/help/data/repo/help_repo.dart';
 import 'package:lawyer_app/presentation/help/data/repo/help_repo_impl.dart';
 import 'package:lawyer_app/presentation/help/presentation/bloc/help_bloc.dart';
+import 'package:lawyer_app/presentation/home%20page/data/repo/complate%20repo/complate_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
+import 'package:lawyer_app/presentation/home%20page/presentation/bloc/complate%20bloc/complate_bloc.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/bloc/home_bloc.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
 import 'package:lawyer_app/presentation/profile/presentation/bloc/profile_bloc.dart';
@@ -70,6 +72,9 @@ class LawyerApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AddImagesBloc(getIt.get<AddImagesRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => ComplateBloc(getIt.get<ComplateRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(
