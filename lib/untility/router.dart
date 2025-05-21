@@ -46,10 +46,7 @@ abstract class AppRouter {
         path: kHomePageView,
         builder: (context, state) => const HomePageView(),
       ),
-      // GoRoute(
-      //   path: kSignupView,
-      //   builder: (context, state) => const SignUpView(),
-      // ),
+
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(
         path: kComplatedPageView,
@@ -85,21 +82,7 @@ abstract class AppRouter {
           );
         },
       ),
-      // GoRoute(
-      //   path: kCheckPropertyView,
-      //   builder: (context, state) => const CheckPropertyView(),
-      // )
-      // GoRoute(
-      //   path: kCheckDocumentView,
-      //   builder: (context, state) {
-      //     final propertyId = state.extra as int;
-      //     return BlocProvider(
-      //       create:
-      //           (_) => CheckDocumentBloc(getIt.get<CheckDocumentRepoImpl>()),
-      //       child: CheckDocumentView(propertyId: propertyId.toString()),
-      //     );
-      //   },
-      // ),
+
       GoRoute(
         path: kCheckDocumentView,
         builder:
