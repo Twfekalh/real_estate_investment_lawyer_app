@@ -14,14 +14,3 @@
 //   @override
 //   List<Object?> get props => [requestId];
 // }
-
-// /// رفض طلب فحص قانوني
-// class RejectRequestEvent extends BuyEvent {
-//   final int requestId;
-//   final String reason;
-
-//   RejectRequestEvent(this.requestId, this.reason);
-
-//   @override
-//   List<Object?> get props => [requestId, reason];
-// }

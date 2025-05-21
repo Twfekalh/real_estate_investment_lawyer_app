@@ -25,17 +25,3 @@
 //       emit(CheckLoadingFailure(helperResponse: response));
 //     }
 //   }
-
-//   Future<void> _onReject(
-//     RejectRequestEvent event,
-//     Emitter<BuyState> emit,
-//   ) async {
-//     emit(CheckInLoadingState());
-//     final response = await _repo.rejectRequest(event);
-//     if (response is RejectResponse) {
-//       emit(RejectDoneState(rejectResponse: response));
-//     } else {
-//       emit(CheckLoadingFailure(helperResponse: response));
-//     }
-//   }
-// }

@@ -41,18 +41,3 @@
 //       token: token,
 //       data: {'description': event.reason},
 //     );
-
-//     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
-//       try {
-//         final response = RejectResponse.fromJson(helperResponse.fullBody!);
-//         return response;
-//       } catch (e) {
-//         return helperResponse.copyWith(
-//           servicesResponse: ServicesResponseStatues.modelError,
-//         );
-//       }
-//     }
-
-//     return helperResponse;
-//   }
-// }

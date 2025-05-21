@@ -2,5 +2,5 @@
 
 // abstract class BuyRepo {
 //   Future acceptRequest(AcceptRequestEvent event);
-//   Future rejectRequest(RejectRequestEvent event);
+
 // }
