@@ -9,7 +9,7 @@ class RefuseReasonBottomSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColors.lightPurple100,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
@@ -18,7 +18,7 @@ class RefuseReasonBottomSheet extends StatelessWidget {
         children: [
           const Text('refusing reason', style: TextStyle(fontSize: 16)),
           const SizedBox(height: 16),
-          const Divider(thickness: 1),
+          const Divider(thickness: 2),
           const TextField(
             decoration: InputDecoration(border: InputBorder.none),
           ),

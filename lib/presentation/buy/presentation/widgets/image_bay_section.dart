@@ -24,7 +24,7 @@ class ImageBaySection extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: AppColors.gray25,
+          color: AppColors.teal,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -41,7 +41,7 @@ class ImageBaySection extends StatelessWidget {
             // نص التحذير
             const Text(
               'notice: please make the photo clear and real',
-              style: TextStyle(fontSize: 14, color: Colors.red),
+              style: TextStyle(fontSize: 16, color: Colors.red),
             ),
 
             const SizedBox(height: 50),
@@ -50,7 +50,7 @@ class ImageBaySection extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors.gray,
+                color: AppColors.darkGreen,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: GridView.builder(

@@ -87,7 +87,7 @@ class _ProfileViewState extends State<ProfileView> {
                       child: Row(
                         children: [
                           Container(
-                            width: 103,
+                            width: 108,
                             height: 103,
                             decoration: ShapeDecoration(
                               color: const Color(0x669A8AEC),
@@ -137,7 +137,7 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     const SizedBox(height: 30),
                     Container(
-                      width: 349,
+                      width: 355,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       decoration: ShapeDecoration(
                         color: const Color(0x3F9A8AEC),

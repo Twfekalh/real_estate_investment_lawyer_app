@@ -60,127 +60,107 @@ class _BuyViewBodyState extends State<BuyViewBody> {
             centerTitle: true,
             backgroundColor: Colors.white,
             elevation: 0,
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.dangerous, color: AppColors.brightRed),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(24),
-                      ),
-                    ),
-                    builder:
-                        (_) => const Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 20,
-                            left: 16,
-                            right: 16,
-                            top: 12,
-                          ),
-                          child: RefuseReasonBottomSheet(),
-                        ),
-                  );
-                },
-              ),
-            ],
+
             iconTheme: const IconThemeData(color: Colors.black),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Name : ${widget.buyRequest.userName}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Born : ${widget.buyRequest.createdAt}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'ID number : ${widget.buyRequest.id}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Property type : ${widget.buyRequest.propertyType}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Location : ${widget.buyRequest.location}',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ],
-                  ),
+          body: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
                 ),
-                const SizedBox(height: 20),
-                ImageBaySection(
-                  title: "id images (2 faces):",
-                  images: idImages,
-                  onTap: pick,
-                ),
-                const SizedBox(height: 20),
-                const Spacer(),
-              ],
-            ),
-          ),
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed:
-                    isLoading
-                        ? null
-                        : () {
-                          // Dispatch the add-images event with the two image paths:
-                          context.read<AddImagesBloc>().add(
-                            SubmitAddImagesEvent(
-                              id: widget.buyRequest.id!,
-                              frontImagePath: idImages[0]!,
-                              backImagePath: idImages[1]!,
-                            ),
-                          );
-                        },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.lightPurple100,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    side: const BorderSide(
-                      color: AppColors.lightPurple,
-                      width: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.teal,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Name : ${widget.buyRequest.userName}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Born : ${widget.buyRequest.createdAt}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'ID number : ${widget.buyRequest.id}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Property type : ${widget.buyRequest.propertyType}',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'Location : ${widget.buyRequest.location}',
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                child:
-                    isLoading
-                        ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text(
-                          'Done',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.background,
+                    const SizedBox(height: 20),
+
+                    ImageBaySection(
+                      title: "id images (2 faces):",
+                      images: idImages,
+                      onTap: pick,
+                    ),
+                    // const SizedBox(height: 20),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0),
+                      child: Center(
+                        child: SizedBox(
+                          width: 200,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              //   context.read<CheckBloc>().add(
+                              //     AcceptRequestEvent(legalCheck.id!),
+                              //   );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.darkGreen,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                side: const BorderSide(
+                                  color: AppColors.teal,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            child: const Text(
+                              'Done',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.background,
+                              ),
+                            ),
                           ),
                         ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+              //  if (state is CheckInLoadingState)
+              //     Container(
+              //       color: Colors.black38,
+              //       child: const Center(child: CircularProgressIndicator()),
+              //     ),
+            ],
           ),
         );
       },

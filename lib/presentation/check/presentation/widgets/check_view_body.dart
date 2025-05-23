@@ -98,7 +98,7 @@ class CheckViewBody extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
+                        color: AppColors.lightPurple100,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -190,7 +190,7 @@ class CheckViewBody extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                                 side: const BorderSide(
                                   color: AppColors.lightPurple,
-                                  width: 1,
+                                  width: 2,
                                 ),
                               ),
                             ),
