@@ -1,7 +1,7 @@
 import 'package:lawyer_app/config/api_config.dart';
 import 'package:lawyer_app/core/api_service.dart';
 import 'package:lawyer_app/core/enums.dart';
-import 'package:lawyer_app/presentation/help/data/models/help.dart';
+import 'package:lawyer_app/presentation/help/data/models/help/help.dart';
 import 'package:lawyer_app/presentation/help/data/repo/help_repo.dart';
 import 'package:lawyer_app/presentation/help/presentation/bloc/help_bloc.dart'
     show FetchFrequentlyQuestionsEvent;

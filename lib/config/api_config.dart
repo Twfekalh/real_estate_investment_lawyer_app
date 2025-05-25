@@ -13,7 +13,7 @@ class ApiConfig {
   static const String verifyCode = 'api/verify_code';
   static const String resetPassword = 'api/reset_password';
   static const String getAllRequests = 'api/get_all_Request';
-  static const String acceptRequest = 'api/accept_Request/1';
+  static const String acceptRequest = 'api/accept_Request';
   static const String rejectRequest = 'api/reject_Request';
   static const String homeEndpoint = 'api/get_all_Request';
   static const String getFrequentlyQuestions = 'api/get_FrequentlyQuestions';

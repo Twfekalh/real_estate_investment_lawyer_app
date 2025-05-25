@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lawyer_app/presentation/help/data/models/help.dart';
+import 'package:lawyer_app/core/api_service.dart';
+
+import 'package:lawyer_app/presentation/help/data/models/help/help.dart';
 import 'package:lawyer_app/presentation/help/data/repo/help_repo_impl.dart';
 
 part 'help_event.dart';

@@ -4,9 +4,13 @@ abstract class HelpState {
   const HelpState();
 }
 
-class HelpInitial extends HelpState {}
+class HelpInitial extends HelpState {
+  const HelpInitial();
+}
 
-class HelpLoadingState extends HelpState {}
+class HelpLoadingState extends HelpState {
+  const HelpLoadingState();
+}
 
 class HelpLoadedState extends HelpState {
   final HelpResponse helpResponse;
@@ -14,6 +18,6 @@ class HelpLoadedState extends HelpState {
 }
 
 class HelpErrorState extends HelpState {
-  final HelpResponse helperResponse;
+  final HelperResponse helperResponse;
   const HelpErrorState({required this.helperResponse});
 }

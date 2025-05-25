@@ -19,11 +19,17 @@ class CheckViewBody extends StatelessWidget {
     return BlocConsumer<CheckBloc, CheckState>(
       listener: (context, state) {
         if (state is AcceptDoneState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('تم قبول الطلب بنجاح')));
-          SchedulerBinding.instance.addPostFrameCallback((_) {
-            GoRouter.of(context).go(AppRouter.kHomePageView);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('تم قبول الطلب بنجاح'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+
+          // تأخير بسيط قبل التنقل
+          Future.delayed(const Duration(seconds: 2), () {
+            if (context.mounted)
+              GoRouter.of(context).go(AppRouter.kHomePageView);
           });
         } else if (state is RejectDoneState) {
           ScaffoldMessenger.of(

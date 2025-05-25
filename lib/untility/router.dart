@@ -25,7 +25,6 @@ import 'package:lawyer_app/presentation/profile/profile_view.dart';
 
 abstract class AppRouter {
   static const kHomePageView = '/homePageView';
-  // static const kSignupView = '/signupView';
   static const kResetPasswordView = '/resetPasswordView';
   static const kForgotPasswordView = '/forgotPasswordView';
   static const kProfileView = '/ProfileView';
