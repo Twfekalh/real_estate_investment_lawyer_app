@@ -37,7 +37,7 @@ class HomePageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 345,
-      height: 56,
+      height: 66,
       decoration: ShapeDecoration(
         gradient: customGradient(startColor, endColor),
         shape: RoundedRectangleBorder(

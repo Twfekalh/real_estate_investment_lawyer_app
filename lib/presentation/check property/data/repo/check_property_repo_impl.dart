@@ -14,26 +14,21 @@ class CheckPropertyRepoImpl implements CheckPropertyRepo {
   Future<dynamic> fetchPropertyById(FetchCheckPropertyByIdEvent event) async {
     final helperResponse = await _apiService.get(
       endpoint: '${ApiConfig.getCheckPropertyById}/${event.id}',
-      // لا حاجة لهيدر توكن هنا بحسب كلامك
     );
 
-    // إذا نجح الطلب على مستوى الشبكة
     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
       try {
-        // نحول الـ JSON إلى كائن ريسبونس
         final response = CheckPropertyResponse.fromJson(
           helperResponse.fullBody!,
         );
         return response;
       } catch (e) {
-        // في حال خطأ أثناء الـ parsing
         return helperResponse.copyWith(
           servicesResponse: ServicesResponseStatues.modelError,
         );
       }
     }
 
-    // في حال فشل الشبكة أو خطأ عام
     return helperResponse;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:lawyer_app/core/api_service.dart';
+import 'package:lawyer_app/presentation/buy/data/models/buy/add_images_response/add_images_response.dart';
 import 'package:lawyer_app/presentation/buy/data/models/buy/buy.request.add.images.dart';
 
 abstract class AddImagesState extends Equatable {

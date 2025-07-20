@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/core/constant.dart';
 import 'package:lawyer_app/core/service_locator.dart';
 import 'package:lawyer_app/presentation/auth/login_view.dart';
 import 'package:lawyer_app/presentation/buy/presentation/buy_view.dart';
@@ -40,13 +41,16 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const HomePageView()),
+      if (token != null && token!.isNotEmpty)
+        GoRoute(path: '/', builder: (context, state) => const HomePageView()),
+      if (token!.isEmpty)
+        GoRoute(path: '/', builder: (context, state) => const LoginView()),
+      GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(
         path: kHomePageView,
         builder: (context, state) => const HomePageView(),
       ),
 
-      GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(
         path: kComplatedPageView,
         builder: (context, state) => const ComplatedPageView(),

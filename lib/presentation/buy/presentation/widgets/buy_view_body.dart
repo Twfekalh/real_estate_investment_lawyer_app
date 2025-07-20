@@ -37,7 +37,6 @@ class _BuyViewBodyState extends State<BuyViewBody> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Images uploaded successfully!')),
           );
-          GoRouter.of(context).pop();
         }
         if (state is AddImagesErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -105,7 +104,7 @@ class _BuyViewBodyState extends State<BuyViewBody> {
                           const SizedBox(height: 6),
                           Text(
                             'Location : ${widget.buyRequest.location}',
-                            style: const TextStyle(fontSize: 20),
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ],
                       ),
@@ -126,11 +125,31 @@ class _BuyViewBodyState extends State<BuyViewBody> {
                           width: 200,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {
-                              //   context.read<CheckBloc>().add(
-                              //     AcceptRequestEvent(legalCheck.id!),
-                              //   );
-                            },
+                            onPressed:
+                                isLoading
+                                    ? null
+                                    : () {
+                                      if (idImages[0] != null &&
+                                          idImages[1] != null) {
+                                        context.read<AddImagesBloc>().add(
+                                          SubmitAddImagesEvent(
+                                            id: widget.buyRequest.id!,
+                                            frontImagePath: idImages[0]!,
+                                            backImagePath: idImages[1]!,
+                                          ),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Please select both front and back ID images.',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.darkGreen,
                               shape: RoundedRectangleBorder(

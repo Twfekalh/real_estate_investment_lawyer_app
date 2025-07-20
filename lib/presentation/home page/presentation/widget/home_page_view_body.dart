@@ -72,48 +72,50 @@ class HomePageViewBody extends StatelessWidget {
                 SizedBox(width: 10),
               ],
             ),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TitleWithDivider(title: 'mission'),
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    itemCount: notifications.length,
-                    itemBuilder: (context, index) {
-                      final item = notifications[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 6,
-                          horizontal: 16,
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            if (item["imageIcon"] == AppAssets.business) {
-                              final buyRequest = item["buyRequestObject"];
-                              GoRouter.of(
-                                context,
-                              ).push(AppRouter.kBuyView, extra: buyRequest);
-                            } else if (item["imageIcon"] == AppAssets.law) {
-                              final legalCheck = item["legalCheckObject"];
-                              GoRouter.of(
-                                context,
-                              ).push(AppRouter.kCheckView, extra: legalCheck);
-                            }
-                          },
-                          child: HomePageItem(
-                            mainText: item["mainText"],
-                            secondText: item["secondText"],
-                            startColor: item["startColor"] ?? Colors.grey,
-                            endColor: item["endColor"] ?? Colors.blueGrey,
-                            imageICon: item["imageIcon"],
+            body: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const TitleWithDivider(title: 'mission'),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      itemCount: notifications.length,
+                      itemBuilder: (context, index) {
+                        final item = notifications[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 6,
+                            horizontal: 16,
                           ),
-                        ),
-                      );
-                    },
+                          child: InkWell(
+                            onTap: () {
+                              if (item["imageIcon"] == AppAssets.business) {
+                                final buyRequest = item["buyRequestObject"];
+                                GoRouter.of(
+                                  context,
+                                ).push(AppRouter.kBuyView, extra: buyRequest);
+                              } else if (item["imageIcon"] == AppAssets.law) {
+                                final legalCheck = item["legalCheckObject"];
+                                GoRouter.of(
+                                  context,
+                                ).push(AppRouter.kCheckView, extra: legalCheck);
+                              }
+                            },
+                            child: HomePageItem(
+                              mainText: item["mainText"],
+                              secondText: item["secondText"],
+                              startColor: item["startColor"] ?? Colors.grey,
+                              endColor: item["endColor"] ?? Colors.blueGrey,
+                              imageICon: item["imageIcon"],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         } else if (state is HomeErrorState) {

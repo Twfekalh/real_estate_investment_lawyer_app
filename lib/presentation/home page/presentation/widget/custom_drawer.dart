@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:lawyer_app/core/handle_cash.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/widget/drawer_item.dart';
 import 'package:lawyer_app/untility/app_color.dart' show AppColors;
 import 'package:lawyer_app/untility/router.dart';
@@ -50,7 +51,14 @@ class CustomDrawer extends StatelessWidget {
           const Divider(thickness: 4, color: AppColors.white, indent: 19),
           DrawerItem(icon: Icons.settings, title: 'Setting', onTap: () {}),
 
-          DrawerItem(icon: Icons.logout, title: 'Logout', onTap: () {}),
+          DrawerItem(
+            icon: Icons.logout,
+            title: 'Logout',
+            onTap: () {
+              removeCache();
+              GoRouter.of(context).push(AppRouter.kLoginView);
+            },
+          ),
         ],
       ),
     );

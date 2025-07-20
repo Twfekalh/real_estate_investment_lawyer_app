@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:lawyer_app/config/api_config.dart';
 import 'package:lawyer_app/core/api_service.dart';
 import 'package:lawyer_app/core/enums.dart';
 import 'package:lawyer_app/core/constant.dart';
+import 'package:lawyer_app/presentation/buy/data/models/buy/add_images_response/add_images_response.dart'
+    show AddImagesResponse;
 import 'package:lawyer_app/presentation/buy/data/models/buy/buy.request.add.images.dart';
 import 'package:lawyer_app/presentation/buy/presentation/bloc/add_images_event.dart'
     show SubmitAddImagesEvent;
@@ -14,18 +17,30 @@ class AddImagesRepoImpl implements AddImagesRepo {
 
   @override
   Future<dynamic> addImages(SubmitAddImagesEvent event) async {
+    final frontImage = await MultipartFile.fromFile(
+      event.frontImagePath,
+      filename: 'front.jpg',
+    );
+    final backImage = await MultipartFile.fromFile(
+      event.backImagePath,
+      filename: 'back.jpg',
+    );
+
+    final formData = FormData.fromMap({
+      'front_image': frontImage,
+      'back_image': backImage,
+    });
+
     final helperResponse = await _apiService.post(
       endpoint: '${ApiConfig.addImageForDocument}/${event.id}',
       token: token,
-      data: {
-        'front_image': event.frontImagePath,
-        'back_image': event.backImagePath,
-      },
+      data: formData,
+      //  isFormData: true, // أضف هذا إن كانت لديك معالجة داخلية في api_service
     );
 
     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
       try {
-        final response = AddImagesResponse.fromJson(helperResponse.fullBody!);
+        final response = AddImagesResponse.from(helperResponse.fullBody!);
         return response;
       } catch (e) {
         return helperResponse.copyWith(

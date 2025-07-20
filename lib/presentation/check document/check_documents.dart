@@ -84,22 +84,22 @@ class CheckDocumentView extends StatelessWidget {
               ),
               bottomNavigationBar: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: CustomSendButton(
-                  buttonName: "confirm",
-                  onTap: () {
-                    final legalCheck = state.checkDocumentResponse.data;
+                // child: CustomSendButton(
+                //   buttonName: "confirm",
+                //   onTap: () {
+                //     final legalCheck = state.checkDocumentResponse.data;
 
-                    if (legalCheck != null) {
-                      GoRouter.of(
-                        context,
-                      ).push(AppRouter.kCheckView, extra: legalCheck);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("لا توجد بيانات للإرسال")),
-                      );
-                    }
-                  },
-                ),
+                //     if (legalCheck != null) {
+                //       GoRouter.of(
+                //         context,
+                //       ).push(AppRouter.kCheckView, extra: legalCheck);
+                //     } else {
+                //       ScaffoldMessenger.of(context).showSnackBar(
+                //         const SnackBar(content: Text("لا توجد بيانات للإرسال")),
+                //       );
+                //     }
+                //   },
+                // ),
               ),
             );
           } else if (state is CheckDocumentErrorState) {
