@@ -8,7 +8,6 @@ class CheckPropertyInitial extends CheckPropertyState {}
 
 class CheckPropertyLoadingState extends CheckPropertyState {}
 
-/// عند النجاح: تحوي الـ response
 class CheckPropertyLoadedState extends CheckPropertyState {
   final CheckPropertyResponse checkPropertyResponse;
   CheckPropertyLoadedState({required this.checkPropertyResponse});

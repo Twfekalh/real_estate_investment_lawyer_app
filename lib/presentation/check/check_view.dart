@@ -18,12 +18,12 @@ class CheckView extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text('تم قبول الطلب بنجاح')));
-          Navigator.of(context).pop(); // أو GoRouter.of(context).pop();
+          Navigator.of(context).pop();
         } else if (state is RejectDoneState) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text('تم رفض الطلب بنجاح')));
-          Navigator.of(context).pop(); // أو GoRouter.of(context).pop();
+          Navigator.of(context).pop();
         } else if (state is CheckLoadingFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(' error: ${state.helperResponse.response}')),

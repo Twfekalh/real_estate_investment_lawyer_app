@@ -26,7 +26,6 @@ class CheckViewBody extends StatelessWidget {
             ),
           );
 
-          // تأخير بسيط قبل التنقل
           Future.delayed(const Duration(seconds: 2), () {
             if (context.mounted)
               GoRouter.of(context).go(AppRouter.kHomePageView);
@@ -99,7 +98,6 @@ class CheckViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // بطاقة بيانات الطلب
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
@@ -149,7 +147,6 @@ class CheckViewBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
 
-                    // زر Description Information
                     PressableButton(
                       text: 'Description Information',
                       initialColor: AppColors.lightPurple,
@@ -163,7 +160,6 @@ class CheckViewBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
 
-                    // زر Check Documents
                     PressableButton(
                       text: 'Check Documents',
                       initialColor: AppColors.lightPurple,
@@ -177,7 +173,6 @@ class CheckViewBody extends StatelessWidget {
 
                     const Spacer(),
 
-                    // زر Done (للقبول)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 24.0),
                       child: Center(
@@ -215,7 +210,6 @@ class CheckViewBody extends StatelessWidget {
                 ),
               ),
 
-              // مؤشّر التحميل فوق المحتوى في حالة Loading
               if (state is CheckInLoadingState)
                 Container(
                   color: Colors.black38,

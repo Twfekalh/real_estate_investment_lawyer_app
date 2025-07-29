@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CheckPropertyContainer extends StatelessWidget {
-  const CheckPropertyContainer({
-    super.key,
-    //  required this.height,
-    required this.child,
-  });
-  //  final double height;
+  const CheckPropertyContainer({super.key, required this.child});
+
   final Widget child;
   @override
   Widget build(BuildContext context) {

@@ -10,16 +10,15 @@ import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart'
 
 class LegalCheckRepoImpl implements LegalCheckRepo {
   final ApiService _apiService;
-  final String token; // ← أضف هذا الحقل
+  final String token;
 
-  // بنّاء جديد يستقبل الـ token
   LegalCheckRepoImpl(this._apiService, this.token);
 
   @override
   Future acceptRequest(AcceptRequestEvent event) async {
     final helperResponse = await _apiService.post(
       endpoint: '${ApiConfig.acceptRequest}/${event.requestId}',
-      token: token, // ← استخدم الحقل هنا
+      token: token,
     );
 
     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
@@ -40,7 +39,7 @@ class LegalCheckRepoImpl implements LegalCheckRepo {
   Future rejectRequest(RejectRequestEvent event) async {
     final helperResponse = await _apiService.post(
       endpoint: '${ApiConfig.rejectRequest}/${event.requestId}',
-      token: token, // ← وأيضًا هنا
+      token: token,
       data: {'description': event.reason},
     );
 

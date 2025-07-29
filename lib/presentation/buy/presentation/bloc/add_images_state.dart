@@ -15,7 +15,6 @@ class AddImagesInitial extends AddImagesState {}
 
 class AddImagesLoadingState extends AddImagesState {}
 
-/// عند النجاح: يحتوي على الـ response
 class AddImagesSuccessState extends AddImagesState {
   final AddImagesResponse addImagesResponse;
 
@@ -25,7 +24,6 @@ class AddImagesSuccessState extends AddImagesState {
   List<Object?> get props => [addImagesResponse];
 }
 
-/// عند الخطأ: يحتوي على helperResponse
 class AddImagesErrorState extends AddImagesState {
   final HelperResponse helperResponse;
 

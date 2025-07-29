@@ -30,7 +30,6 @@ class ImageBaySection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // العنوان
             Text(
               title,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -38,7 +37,6 @@ class ImageBaySection extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // نص التحذير
             const Text(
               'notice: please make the photo clear and real',
               style: TextStyle(fontSize: 16, color: Colors.red),
@@ -46,7 +44,6 @@ class ImageBaySection extends StatelessWidget {
 
             const SizedBox(height: 50),
 
-            // خلفية الشبكة
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(

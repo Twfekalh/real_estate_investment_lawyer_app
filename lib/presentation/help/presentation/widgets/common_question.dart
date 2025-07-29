@@ -18,7 +18,7 @@ class _FAQViewState extends State<CommonQuestion> {
   @override
   void initState() {
     super.initState();
-    // نرسل الحدث عند بداية الـ widget
+
     context.read<HelpBloc>().add(FetchFrequentlyQuestionsEvent());
   }
 
@@ -43,11 +43,10 @@ class _FAQViewState extends State<CommonQuestion> {
       ),
       body: BlocBuilder<HelpBloc, HelpState>(
         builder: (context, state) {
-          // حالة التحميل
           if (state is HelpLoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
-          // حالة الخطأ
+
           if (state is HelpErrorState) {
             return Center(
               child: Text(
@@ -55,16 +54,14 @@ class _FAQViewState extends State<CommonQuestion> {
               ),
             );
           }
-          // حالة النجاح
+
           if (state is HelpLoadedState) {
             final List<Help> faqItems = state.helpResponse.data ?? [];
 
-            // لو ما في عناصر
             if (faqItems.isEmpty) {
               return const Center(child: Text('لا توجد أسئلة شائعة'));
             }
 
-            // مصفوفة حالات التوسيع
             final isExpanded = List<bool>.filled(faqItems.length, false);
 
             return StatefulBuilder(
@@ -153,7 +150,7 @@ class _FAQViewState extends State<CommonQuestion> {
               },
             );
           }
-          // الحالة الافتراضية
+
           return const SizedBox.shrink();
         },
       ),

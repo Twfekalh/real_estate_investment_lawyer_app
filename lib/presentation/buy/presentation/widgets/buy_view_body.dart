@@ -33,7 +33,6 @@ class _BuyViewBodyState extends State<BuyViewBody> {
     return BlocConsumer<AddImagesBloc, AddImagesState>(
       listener: (context, state) {
         if (state is AddImagesSuccessState) {
-          // On success, show a snackbar and navigate back
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Images uploaded successfully!')),
           );

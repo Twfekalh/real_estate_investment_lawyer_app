@@ -35,7 +35,7 @@ class AddImagesRepoImpl implements AddImagesRepo {
       endpoint: '${ApiConfig.addImageForDocument}/${event.id}',
       token: token,
       data: formData,
-      //  isFormData: true, // أضف هذا إن كانت لديك معالجة داخلية في api_service
+      //  isFormData: true,
     );
 
     if (helperResponse.servicesResponse == ServicesResponseStatues.success) {

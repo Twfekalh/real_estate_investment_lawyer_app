@@ -39,16 +39,14 @@ class _LoginViewState extends State<LoginView> {
         },
         child: Stack(
           children: [
-            /// Background Image (Full Screen)
             Positioned(
               top: 0,
               child: SvgPicture.asset(
-                'assets/images/background.svg', // Ensure correct path
+                'assets/images/background.svg',
                 fit: BoxFit.contain,
               ),
             ),
 
-            /// Content (Half of Screen)
             Positioned(
               bottom: 0,
               child: SizedBox(
@@ -76,7 +74,6 @@ class _LoginViewState extends State<LoginView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      /// Email Input
                       CustomTextField(
                         controller: emailController,
                         hintText: "Email or number",
@@ -94,7 +91,6 @@ class _LoginViewState extends State<LoginView> {
                         //  isPassword: true,
                       ),
 
-                      /// Forget Password
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -116,7 +112,6 @@ class _LoginViewState extends State<LoginView> {
                         height: MediaQuery.of(context).size.height * 0.015,
                       ),
 
-                      /// Login Button
                       BlocBuilder<UserBloc, UserState>(
                         builder: (context, state) {
                           return CustomButton(
@@ -137,7 +132,6 @@ class _LoginViewState extends State<LoginView> {
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
 
-                      /// Signup Redirect
                       Center(
                         child: TextButton(
                           onPressed: () {

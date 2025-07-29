@@ -85,22 +85,17 @@ class _CheckPropertyViewState extends State<CheckPropertyView> {
                                 space:
                                     int.tryParse(property.area ?? '') ??
                                     0, // String
-                                rooms: property.numberOfRooms ?? 0, // int
-                                bathrooms:
-                                    property.numberOfBathrooms ?? 0, // int
-                                propertyAge: property.propertyAge ?? 0, // int
-                                overlook: property.overlookFrom ?? 0, // int
+                                rooms: property.numberOfRooms ?? 0,
+                                bathrooms: property.numberOfBathrooms ?? 0,
+                                propertyAge: property.propertyAge ?? 0,
+                                overlook: property.overlookFrom ?? 0,
                                 balconySize:
                                     int.tryParse(property.balconySize ?? '') ??
                                     0,
-                                selectedDecoration:
-                                    property.decoration ?? '', // String
-                                selectedKitchen:
-                                    property.kitchenType ?? '', // String
-                                selectedFlooring:
-                                    property.flooringType ?? '', // String
-                                selectedPainting:
-                                    property.paintingType ?? '', // String
+                                selectedDecoration: property.decoration ?? '',
+                                selectedKitchen: property.kitchenType ?? '',
+                                selectedFlooring: property.flooringType ?? '',
+                                selectedPainting: property.paintingType ?? '',
                               ),
                             ),
                             SizedBox(height: 20),
@@ -214,7 +209,7 @@ class _CheckPropertyViewState extends State<CheckPropertyView> {
                 } else if (state is CheckPropertyErrorState) {
                   return Center(
                     child: Text(
-                      "حدث خطأ: ${state.helperResponse.servicesResponse}",
+                      " Error: ${state.helperResponse.servicesResponse}",
                     ),
                   );
                 }

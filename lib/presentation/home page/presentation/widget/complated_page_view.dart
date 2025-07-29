@@ -15,7 +15,6 @@ class ComplatedPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Trigger fetch once when this screen is built
     context.read<ComplateBloc>().add(FetchComplateEvent());
 
     return BlocBuilder<ComplateBloc, ComplateState>(
@@ -29,7 +28,6 @@ class ComplatedPageView extends StatelessWidget {
         if (state is ComplateLoadedState) {
           final items = state.complateResponse.data ?? [];
 
-          // Map your model into notification maps
           final notifications =
               items.map((c) {
                 final prop = c.property;
@@ -83,9 +81,7 @@ class ComplatedPageView extends StatelessWidget {
                           horizontal: 16,
                         ),
                         child: InkWell(
-                          onTap: () {
-                            /* … */
-                          },
+                          onTap: () {},
                           child: HomePageItem(
                             mainText: item["mainText"] as String,
                             secondText: item["secondText"] as String,
@@ -113,7 +109,6 @@ class ComplatedPageView extends StatelessWidget {
           );
         }
 
-        // Fallback initial
         return const Scaffold(body: Center(child: Text("No data.")));
       },
     );

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  AppColors._(); // Private constructor to prevent instantiation
+  AppColors._();
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color lightGray = Color(0xFFEAEBEA);
   static const Color background = Color(0xFFF5F5F5);
-  static const Color black38 = Color(0x61000000); // 38% opacity
+  static const Color black38 = Color(0x61000000);
   static const Color darkGreen = Color(0xFF22842D);
   static const Color green15 = Color(0x26FFCC02);
 

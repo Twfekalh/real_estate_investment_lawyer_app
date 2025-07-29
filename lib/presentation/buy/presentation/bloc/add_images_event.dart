@@ -7,7 +7,6 @@ abstract class AddImagesEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-/// الحدث لإرسال الصور
 class SubmitAddImagesEvent extends AddImagesEvent {
   final int id;
   final String frontImagePath;

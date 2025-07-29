@@ -50,7 +50,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             Positioned(
               top: 0,
               child: SvgPicture.asset(
-                'assets/images/login_background.svg', // Ensure correct path
+                'assets/images/login_background.svg',
                 fit: BoxFit.contain,
               ),
             ),

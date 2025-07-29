@@ -25,11 +25,10 @@ class _PressableButtonState extends State<PressableButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // تغيير الحالة إلى pressed
         setState(() {
           isPressed = true;
         });
-        // تنفيذ وظيفة التنقل أو الدالة الأخرى
+
         widget.onTap();
       },
       child: Container(

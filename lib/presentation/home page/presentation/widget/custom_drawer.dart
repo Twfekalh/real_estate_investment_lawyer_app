@@ -12,13 +12,12 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightPurple, // Light purple background
+      backgroundColor: AppColors.lightPurple,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         //  padding: EdgeInsets.zero,
         children: [
-          // Drawer Header
           DrawerItem(
             icon: Icons.home,
             title: 'Home',
@@ -40,7 +39,7 @@ class CustomDrawer extends StatelessWidget {
               GoRouter.of(context).push(AppRouter.kComplatedPageView);
             },
           ),
-          //highlight_off_sharp
+
           DrawerItem(
             icon: Icons.help,
             title: 'Help',

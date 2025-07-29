@@ -13,7 +13,6 @@ class ComplateInitial extends ComplateState {}
 
 class ComplateLoadingState extends ComplateState {}
 
-/// عند النجاح: تحوي الـ response
 class ComplateLoadedState extends ComplateState {
   final ComplateResponse complateResponse;
 
@@ -23,7 +22,6 @@ class ComplateLoadedState extends ComplateState {
   List<Object?> get props => [complateResponse];
 }
 
-/// عند الخطأ: تحوي helperResponse
 class ComplateErrorState extends ComplateState {
   final HelperResponse helperResponse;
 

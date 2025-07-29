@@ -30,11 +30,9 @@ import 'package:lawyer_app/untility/router.dart' show AppRouter;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 1) تهيئة الكاش
   await CacheHelper.init();
   await getCache();
 
-  // 2) تهيئة Service Locator (ApiService, AuthRepo)
   setupServiceLocator();
   runApp(const LawyerApp());
 }
