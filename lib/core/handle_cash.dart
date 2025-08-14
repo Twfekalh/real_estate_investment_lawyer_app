@@ -38,7 +38,7 @@ Future<void> removeCache() async {
   // await CacheHelper.removeData(key: 'joinDate');
 
   // Clear memory
-  token = null; // Make sure it's declared as String? token;
+  token = null;
   name = '';
   email = '';
   phone = '';
