@@ -6,20 +6,22 @@ class ApiConfig {
   static String baseUrl =
       Platform.isAndroid ? 'http://10.0.2.2:8000/' : 'http://127.0.0.1:8000';
   // static const int timeout = 30;
-  static const String loginEndpoint = 'api/login';
+  static const String loginEndpoint = 'api/v1/login';
 
-  static const String getProfile = 'api/profile';
+  static const String getProfile = 'api/v1/profile';
 
-  static const String sendVerificationCode = 'api/send_verification_code';
-  static const String verifyCode = 'api/verify_code';
-  static const String resetPassword = 'api/reset_password';
-  static const String getAllRequests = 'api/get_all_Request';
-  static const String acceptRequest = 'api/accept_Request';
-  static const String rejectRequest = 'api/reject_Request';
-  static const String homeEndpoint = 'api/get_all_Request';
-  static const String getFrequentlyQuestions = 'api/get_FrequentlyQuestions';
-  static const String getCheckPropertyById = 'api/get_properties_by_id';
-  static const String getCheckDocumentById = 'api/get_image_for_property_by_id';
-  static const String addImageForDocument = 'api/add_image_for_Document/';
-  static const String getBuyRequestCompleted = 'api/get_buy_request_completed';
+  static const String sendVerificationCode = 'api/v1/send_verification_code';
+  static const String verifyCode = 'api/v1/verify_code';
+  static const String resetPassword = 'api/v1/reset_password';
+  static const String getAllRequests = 'api/v1/get_all_Request';
+  static const String acceptRequest = 'api/v1/accept_Request';
+  static const String rejectRequest = 'api/v1/reject_Request';
+  static const String homeEndpoint = 'api/v1/get_all_Request';
+  static const String getFrequentlyQuestions = 'api/v1/get_FrequentlyQuestions';
+  static const String getCheckPropertyById = 'api/v1/get_properties_by_id';
+  static const String getCheckDocumentById =
+      'api/v1/get_image_for_property_by_id';
+  static const String addImageForDocument = 'api/v1/add_image_for_Document/';
+  static const String getBuyRequestCompleted =
+      'api/v1/get_buy_request_completed';
 }

@@ -41,10 +41,10 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      if (token != null && token!.isNotEmpty)
-        GoRoute(path: '/', builder: (context, state) => const HomePageView()),
-      if (token!.isEmpty)
-        GoRoute(path: '/', builder: (context, state) => const LoginView()),
+      //   if (token != null && token!.isNotEmpty)
+      //     GoRoute(path: '/', builder: (context, state) => const HomePageView()),
+      //   if (token!.isEmpty)
+      GoRoute(path: '/', builder: (context, state) => const HomePageView()),
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(
         path: kHomePageView,
