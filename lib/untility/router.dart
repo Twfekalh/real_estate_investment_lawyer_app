@@ -6,7 +6,6 @@ import 'package:lawyer_app/presentation/auth/login_view.dart';
 import 'package:lawyer_app/presentation/buy/presentation/buy_view.dart';
 import 'package:lawyer_app/presentation/auth/forgot_password_view.dart';
 import 'package:lawyer_app/presentation/auth/reset_password_view.dart';
-
 import 'package:lawyer_app/presentation/check%20document/check_documents.dart';
 import 'package:lawyer_app/presentation/check%20document/data/model/check/data.document.dart';
 import 'package:lawyer_app/presentation/check%20document/data/repo/check_document_repo_impl.dart';
@@ -16,6 +15,9 @@ import 'package:lawyer_app/presentation/check%20property/data/repo/check_propert
 import 'package:lawyer_app/presentation/check%20property/presentation/bloc/check_proparty_bloc.dart';
 import 'package:lawyer_app/presentation/check/check_view.dart';
 import 'package:lawyer_app/presentation/check/presentation/widgets/refuse_reason_bottom_sheet.dart';
+import 'package:lawyer_app/presentation/deputization/data/repo/deputizations_repo_impl.dart';
+import 'package:lawyer_app/presentation/deputization/presentation/bloc/deputizations_bloc.dart';
+import 'package:lawyer_app/presentation/deputization/presentation/deputizations_view.dart';
 import 'package:lawyer_app/presentation/help/help_view.dart';
 import 'package:lawyer_app/presentation/help/presentation/widgets/common_question.dart';
 import 'package:lawyer_app/presentation/home%20page/data/model/home/buy_request.page.model.dart';
@@ -37,6 +39,7 @@ abstract class AppRouter {
   static const kCommonQuestion = '/CommonQuestion';
   static const kBuyView = '/BuyView';
   static const kComplatedPageView = '/ComplatedPageView';
+  static const kDeputizationsView = '/DeputizationsView';
   static const kLoginView = '/LoginView';
 
   static final router = GoRouter(
@@ -50,7 +53,22 @@ abstract class AppRouter {
         path: kHomePageView,
         builder: (context, state) => const HomePageView(),
       ),
+      GoRoute(
+        path: kDeputizationsView,
+        builder: (context, state) => const DeputizationsView(),
+      ),
 
+      // GoRoute(
+      //   path: kDeputizationsView,
+      //   builder:
+      //       (context, state) => BlocProvider(
+      //         create:
+      //             (context) =>
+      //                 DeputizationsBloc(getIt.get<DeputizationsRepoImpl>())
+      //                   ..add(GetDeputizationsEvent()),
+      //         child: const DeputizationsView(),
+      //       ),
+      // )
       GoRoute(
         path: kComplatedPageView,
         builder: (context, state) => const ComplatedPageView(),

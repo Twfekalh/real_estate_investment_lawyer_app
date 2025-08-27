@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:lawyer_app/core/handle_cash.dart';
+import 'package:lawyer_app/presentation/deputization/presentation/bloc/deputizations_bloc.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/widget/drawer_item.dart';
 import 'package:lawyer_app/untility/app_color.dart' show AppColors;
 import 'package:lawyer_app/untility/router.dart';
@@ -39,7 +41,14 @@ class CustomDrawer extends StatelessWidget {
               GoRouter.of(context).push(AppRouter.kComplatedPageView);
             },
           ),
-
+          DrawerItem(
+            icon: Icons.people_alt,
+            title: 'Deputizations',
+            onTap: () {
+              context.read<DeputizationsBloc>().add(GetDeputizationsEvent());
+              GoRouter.of(context).push(AppRouter.kDeputizationsView);
+            },
+          ),
           DrawerItem(
             icon: Icons.help,
             title: 'Help',

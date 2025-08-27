@@ -62,11 +62,16 @@ class HomePageItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    mainText,
-                    style: const TextStyle(color: Colors.black87, fontSize: 16),
+                  Expanded(
+                    child: Text(
+                      mainText,
+                      style: const TextStyle(
+                        color: Colors.black87,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                  Flexible(
+                  Expanded(
                     child: Text(
                       '$secondText\n',
                       style: const TextStyle(

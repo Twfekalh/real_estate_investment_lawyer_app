@@ -15,6 +15,8 @@ import 'package:lawyer_app/presentation/check/data/models/Accept/Accept_pesponse
 import 'package:lawyer_app/presentation/check/data/models/reject/reject_response.dart';
 import 'package:lawyer_app/presentation/check/data/repo/legal_check_repo.dart';
 import 'package:lawyer_app/presentation/check/presentation/bloc/check_bloc.dart';
+import 'package:lawyer_app/presentation/deputization/data/repo/deputizations_repo_impl.dart';
+import 'package:lawyer_app/presentation/deputization/presentation/bloc/deputizations_bloc.dart';
 import 'package:lawyer_app/presentation/help/data/repo/help_repo.dart';
 import 'package:lawyer_app/presentation/help/data/repo/help_repo_impl.dart';
 import 'package:lawyer_app/presentation/help/presentation/bloc/help_bloc.dart';
@@ -73,6 +75,9 @@ class LawyerApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ComplateBloc(getIt.get<ComplateRepoImpl>()),
+        ),
+         BlocProvider(
+          create: (context) => DeputizationsBloc(getIt.get<DeputizationsRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(
