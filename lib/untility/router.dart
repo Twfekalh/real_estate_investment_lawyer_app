@@ -25,6 +25,9 @@ import 'package:lawyer_app/presentation/home%20page/data/model/home/legal_check.
 import 'package:lawyer_app/presentation/home%20page/home_page_view.dart';
 import 'package:lawyer_app/presentation/home%20page/presentation/widget/complated_page_view.dart';
 import 'package:lawyer_app/presentation/profile/profile_view.dart';
+import 'package:lawyer_app/presentation/ownership requests for lawyer/presentation/ownership_requests_view.dart';
+import 'package:lawyer_app/presentation/ownership requests for lawyer/presentation/bloc/owner_ship_requests_bloc.dart';
+import 'package:lawyer_app/presentation/ownership requests for lawyer/data/repo/owner_ship_requests_repo_impl.dart';
 
 abstract class AppRouter {
   static const kHomePageView = '/homePageView';
@@ -41,6 +44,7 @@ abstract class AppRouter {
   static const kComplatedPageView = '/ComplatedPageView';
   static const kDeputizationsView = '/DeputizationsView';
   static const kLoginView = '/LoginView';
+  static const kOwnershipRequestsView = '/OwnershipRequestsView';
 
   static final router = GoRouter(
     routes: [
@@ -56,6 +60,17 @@ abstract class AppRouter {
       GoRoute(
         path: kDeputizationsView,
         builder: (context, state) => const DeputizationsView(),
+      ),
+      GoRoute(
+        path: kOwnershipRequestsView,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (_) => OwnerShipRequestsBloc(
+                    getIt.get<OwnerShipRequestsRepoImpl>(),
+                  ),
+              child: const OwnershipRequestsView(),
+            ),
       ),
 
       // GoRoute(
@@ -105,7 +120,7 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: kCheckDocumentView,
+        path: kOwnershipRequestsView,
         builder:
             (context, state) => BlocProvider(
               create:

@@ -15,6 +15,7 @@ import 'package:lawyer_app/presentation/help/data/repo/help_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/complate%20repo/complate_repo_impl.dart';
 import 'package:lawyer_app/presentation/home%20page/data/repo/home_page_repo_impl.dart';
 import 'package:lawyer_app/presentation/profile/data/repo/profile_repo_impl.dart';
+import 'package:lawyer_app/presentation/ownership%20requests%20for%20lawyer/data/repo/owner_ship_requests_repo_impl.dart';
 
 final GetIt getIt = GetIt.instance;
 void setupServiceLocator() {
@@ -55,6 +56,9 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<DeputizationsRepoImpl>(
     DeputizationsRepoImpl(getIt.get<ApiService>()),
+  );
+  getIt.registerSingleton<OwnerShipRequestsRepoImpl>(
+    OwnerShipRequestsRepoImpl(getIt.get<ApiService>()),
   );
   ///
 }

@@ -15,6 +15,10 @@ class GetDeputizationsEvent extends DeputizationsEvent {
 
 class ProccessDeputazationEvent  extends DeputizationsEvent {
   final String id;
+  final String? imagePath;
 
-  ProccessDeputazationEvent({required this.id});
+  ProccessDeputazationEvent({required this.id, this.imagePath});
+
+  @override
+  List<Object> get props => [id, imagePath ?? ''];
 }

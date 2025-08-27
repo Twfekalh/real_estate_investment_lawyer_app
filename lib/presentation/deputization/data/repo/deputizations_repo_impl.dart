@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:lawyer_app/config/api_config.dart';
 import 'package:lawyer_app/core/api_service.dart';
 import 'package:lawyer_app/core/constant.dart';
@@ -34,13 +35,31 @@ class DeputizationsRepoImpl implements DeputizationsRepo {
   
   @override
   Future processDeputizations(ProccessDeputazationEvent event) async {
-       HelperResponse helperResponse = await _apiService.post(
+    if (event.imagePath != null && event.imagePath!.isNotEmpty) {
+      final file = File(event.imagePath!);
+      final helperResponse = await _apiService.postMultipart(
+        url: '${ApiConfig.baseUrl}${ApiConfig.processDeputizationsByLawyer}/${event.id}',
+        files: {'deputization_image': file},
+        token: token,
+      );
+      if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+        try {
+          return helperResponse.fullBody!['message'];
+        } catch (e) {
+          return helperResponse.copyWith(
+            servicesResponse: ServicesResponseStatues.modelError,
+          );
+        }
+      }
+      return helperResponse;
+    }
+
+    HelperResponse helperResponse = await _apiService.post(
       endpoint:'${ApiConfig.processDeputizationsByLawyer}/${event.id}',
       token: token,
     );
-        if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
+    if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
       try {
-       
         return helperResponse.fullBody!['message'] ;
       } catch (e) {
         return helperResponse.copyWith(
@@ -50,28 +69,4 @@ class DeputizationsRepoImpl implements DeputizationsRepo {
     }
     return helperResponse;
   }
-  // Future getAllDeputizations(DeputizationsEvent event, int page) async {
-  //   final helperResponse = await _apiService.get(
-  //     token: token,
-  //     endpoint:
-  //         // ApiConfig.getAllDeputizationsForLawyer,
-  //         "${ApiConfig.getAllDeputizationsForLawyer}?page=$page",
-  //   );
-  //   print("the deputazation response ${helperResponse.fullBody}");
-  //   print("${ApiConfig.getAllDeputizationsForLawyer}?page=$page");
-
-  //   if (helperResponse.servicesResponse == ServicesResponseStatues.success) {
-  //     try {
-  //       final response = DeputizationsResponse.from(helperResponse.fullBody!);
-  //       print("the deputazation response $response.");
-  //       return response;
-  //     } catch (e) {
-  //       return helperResponse.copyWith(
-  //         servicesResponse: ServicesResponseStatues.modelError,
-  //       );
-  //     }
-  //   }
-
-  //   return helperResponse;
-  // }
 }

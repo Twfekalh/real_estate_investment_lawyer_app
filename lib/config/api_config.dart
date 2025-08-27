@@ -27,4 +27,6 @@ class ApiConfig {
       'api/v1/process_deputizations_by_lawyer';
   static const String getAllOwnershipRequestsForlawyer =
       'api/v1/get_all_ownership_requests_for_lawyer';
+  static const String acceptTransferOwnershipRequest =
+      'api/v1/accept_transfer_ownership_requests';
 }

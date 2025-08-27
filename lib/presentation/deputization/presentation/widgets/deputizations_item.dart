@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:lawyer_app/config/api_config.dart';
 import 'package:lawyer_app/presentation/deputization/presentation/bloc/deputizations_bloc.dart';
 import 'package:lawyer_app/untility/app_color.dart';
 
@@ -11,6 +13,7 @@ class DeputizationItem extends StatelessWidget {
   final String deputizationContent;
   final String createdAt;
   final String userId;
+  final String? deputizationImage;
 
   const DeputizationItem({
     super.key,
@@ -20,10 +23,22 @@ class DeputizationItem extends StatelessWidget {
     required this.deputizationContent,
     required this.createdAt,
     required this.userId,
+    this.deputizationImage,
   });
 
   @override
   Widget build(BuildContext context) {
+    String? pickedPath;
+    final ImagePicker picker = ImagePicker();
+
+    final isProcessed = status == 'Processed';
+    final fullImageUrl =
+        deputizationImage != null && deputizationImage!.isNotEmpty
+            ? (deputizationImage!.startsWith('http')
+                ? deputizationImage!
+                : '${ApiConfig.baseUrl}${deputizationImage!}')
+            : null;
+
     return Card(
       color: AppColors.background,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -47,7 +62,7 @@ class DeputizationItem extends StatelessWidget {
             Text(
               "Status: $status",
               style: TextStyle(
-                color: status == "Processed" ? Colors.green : Colors.orange,
+                color: isProcessed ? Colors.green : Colors.orange,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -55,6 +70,19 @@ class DeputizationItem extends StatelessWidget {
               "Created at: ${createdAt.split('T').first}",
               style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
+            if (fullImageUrl != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    fullImageUrl,
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
           ],
         ),
         trailing: const Icon(
@@ -72,56 +100,103 @@ class DeputizationItem extends StatelessWidget {
             builder:
                 (_) => Padding(
                   padding: const EdgeInsets.all(20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Deputization Content",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          deputizationContent,
-                          style: const TextStyle(fontSize: 15, height: 1.4),
-                        ),
-                        const SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.center,
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
-                                vertical: 12,
-                              ),
-                            ),
-                            onPressed: () {
-                              context.read<DeputizationsBloc>().add(
-                                ProccessDeputazationEvent(
-                                  id: userId.toString(),
+                  child: StatefulBuilder(
+                    builder:
+                        (context, setState) => SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Deputization Content",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
-                              );
-                              GoRouter.of(context).pop();
-                            },
-                            icon: const Icon(
-                              Icons.check_circle,
-                              color: Colors.white,
-                            ),
-                            label: const Text(
-                              "Submit",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                deputizationContent,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  height: 1.4,
+                                ),
+                              ),
+                              if (fullImageUrl != null) ...[
+                                const SizedBox(height: 16),
+                                const Text(
+                                  'Attached Image:',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(height: 8),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(fullImageUrl),
+                                ),
+                              ],
+                              if (!isProcessed) ...[
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: [
+                                    ElevatedButton.icon(
+                                      onPressed: () async {
+                                        final XFile? file = await picker
+                                            .pickImage(
+                                              source: ImageSource.gallery,
+                                            );
+                                        if (file != null) {
+                                          setState(
+                                            () => pickedPath = file.path,
+                                          );
+                                        }
+                                      },
+                                      icon: const Icon(Icons.photo),
+                                      label: const Text('Pick Image'),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    if (pickedPath != null)
+                                      const Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green,
+                                      ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: ElevatedButton.icon(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 24,
+                                        vertical: 12,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      context.read<DeputizationsBloc>().add(
+                                        ProccessDeputazationEvent(
+                                          id: userId.toString(),
+                                          imagePath: pickedPath,
+                                        ),
+                                      );
+                                      GoRouter.of(context).pop();
+                                    },
+                                    icon: const Icon(
+                                      Icons.check_circle,
+                                      color: Colors.white,
+                                    ),
+                                    label: const Text(
+                                      "Submit",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ),
-                      ],
-                    ),
                   ),
                 ),
           );

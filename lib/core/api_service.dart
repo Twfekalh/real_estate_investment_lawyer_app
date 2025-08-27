@@ -120,20 +120,15 @@ class ApiService {
 
       return HelperResponse(
         fullBody: errorData,
-        response: errorData?['message'] ?? e.message ?? 'Something went wrong',
+        response:
+            errorData?['message'] ?? e.message ?? 'Something went wrong',
         servicesResponse: ServicesResponseStatues.someThingWrong,
       );
-    } on SocketException {
+    } on SocketException catch (_) {
       return HelperResponse(
-        fullBody: null,
+        fullBody: {"error": "No internet connection"},
         response: 'No internet connection',
         servicesResponse: ServicesResponseStatues.networkError,
-      );
-    } catch (e) {
-      return HelperResponse(
-        fullBody: null,
-        response: 'Unexpected error: ${e.toString()}',
-        servicesResponse: ServicesResponseStatues.someThingWrong,
       );
     }
   }
@@ -243,6 +238,85 @@ class ApiService {
     }
   }
 
+  Future<HelperResponse> postMultipart({
+    required String url,
+    Map<String, dynamic> body = const {},
+    Map<String, File> files = const {},
+    String? token,
+  }) async {
+    try {
+      final formData = FormData.fromMap(body);
+      for (final entry in files.entries) {
+        formData.files.add(
+          MapEntry(
+            entry.key,
+            await MultipartFile.fromFile(
+              entry.value.path,
+              filename: entry.value.path.split('/').last,
+            ),
+          ),
+        );
+      }
+
+      final headers = {
+        'Accept': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Connection': 'Keep-Alive',
+        'Keep-Alive': 'timeout=15, max=10',
+        if (token != null) 'Authorization': 'Bearer $token',
+      };
+
+      final response = await _dio.post(
+        url,
+        data: formData,
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200) {
+        return HelperResponse(
+          fullBody:
+              response.data is Map ? response.data : {'raw': response.data},
+          response: response.data.toString(),
+          servicesResponse: ServicesResponseStatues.success,
+        );
+      }
+
+      if (response.statusCode == 401) {
+        return HelperResponse(
+          fullBody: response.data ?? {'message': 'Unauthorized'},
+          response: response.data['message'] ?? 'Unauthorized',
+          servicesResponse: ServicesResponseStatues.unauthorized,
+        );
+      }
+
+      return HelperResponse(
+        fullBody: response.data ?? {'error': 'Something went wrong'},
+        response: response.data['message'] ?? 'Something went wrong',
+        servicesResponse: ServicesResponseStatues.someThingWrong,
+      );
+    } on DioException catch (e) {
+      print('Dio error: ${e.response?.data}');
+      if (e.response?.statusCode == 401) {
+        return HelperResponse(
+          fullBody: e.response?.data ?? {'message': 'Unauthorized'},
+          response: e.response?.data['message'] ?? 'Unauthorized',
+          servicesResponse: ServicesResponseStatues.unauthorized,
+        );
+      }
+      return HelperResponse(
+        fullBody: e.response?.data ?? {'error': e.toString()},
+        response: e.response?.data['message'] ?? 'Something went wrong',
+        servicesResponse: ServicesResponseStatues.someThingWrong,
+      );
+    } on SocketException catch (_) {
+      return HelperResponse(
+        fullBody: {'error': 'No internet connection'},
+        response: 'No internet connection',
+        servicesResponse: ServicesResponseStatues.networkError,
+      );
+    }
+  }
+
   Future<HelperResponse> delete({
     required String endpoint,
     Map<String, dynamic>? data,
@@ -288,12 +362,15 @@ class ApiService {
 
   Future<HelperResponse> put({
     required String endpoint,
-    Map<String, dynamic>? data,
+    dynamic data,
     String? token,
   }) async {
     _dio.options.headers = {
-      'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',
+      'Cache-Control': 'no-cache',
+      'Accept': 'application/json',
+      "Connection": "Keep-Alive",
+      "Keep-Alive": "timeout=15, max=10",
     };
 
     try {

@@ -2,35 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lawyer_app/presentation/deputization/presentation/bloc/deputizations_bloc.dart';
-import 'package:lawyer_app/presentation/deputization/presentation/widgets/deputizations_item.dart';
-import 'package:lawyer_app/presentation/deputization/presentation/widgets/shimmer_deputization_Item.dart';
+import 'package:lawyer_app/presentation/ownership requests for lawyer/presentation/bloc/owner_ship_requests_bloc.dart';
+import 'package:lawyer_app/presentation/ownership requests for lawyer/presentation/widgets/ownership_request_item.dart';
+import 'package:lawyer_app/presentation/ownership requests for lawyer/presentation/widgets/shimmer_ownership_request_item.dart';
 import 'package:lawyer_app/untility/elevated_button_widget.dart';
 import 'package:lawyer_app/untility/somthing_wrong.dart';
 
-class DeputizationsView extends StatefulWidget {
-  const DeputizationsView({super.key});
+class OwnershipRequestsView extends StatefulWidget {
+  const OwnershipRequestsView({super.key});
 
   @override
-  State<DeputizationsView> createState() => _DeputizationsViewState();
+  State<OwnershipRequestsView> createState() => _OwnershipRequestsViewState();
 }
 
-class _DeputizationsViewState extends State<DeputizationsView> {
+class _OwnershipRequestsViewState extends State<OwnershipRequestsView> {
   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
-    context.read<DeputizationsBloc>().add(const GetDeputizationsEvent());
+    context.read<OwnerShipRequestsBloc>().add(
+      const GetOwnerShipRequestsEvent(),
+    );
 
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
-        final state = context.read<DeputizationsBloc>().state;
+        final state = context.read<OwnerShipRequestsBloc>().state;
 
-        if (state is DeputizationsSuccess &&
+        if (state is OwnerShipRequestsSuccess &&
             !state.hasReachedMax &&
             !state.isLoadingMore) {
-          context.read<DeputizationsBloc>().add(const GetDeputizationsEvent());
+          context.read<OwnerShipRequestsBloc>().add(
+            const GetOwnerShipRequestsEvent(),
+          );
         }
       }
     });
@@ -44,16 +48,15 @@ class _DeputizationsViewState extends State<DeputizationsView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<DeputizationsBloc, DeputizationsState>(
+    return BlocListener<OwnerShipRequestsBloc, OwnerShipRequestsState>(
       listener: (context, state) {
-        if (state is ProccessDeputizationsLoading) {
+        if (state is AcceptTransferLoading) {
           EasyLoading.show(status: 'loading...');
-          context.read<DeputizationsBloc>().add(const GetDeputizationsEvent());
         }
-        if (state is ProccessDeputizationsSuccesss) {
+        if (state is AcceptTransferSuccess) {
           EasyLoading.showSuccess(state.successMessage);
         }
-        if (state is ProccessDeputizationsFailure) {
+        if (state is AcceptTransferFailure) {
           EasyLoading.showError(state.errMessage);
         }
       },
@@ -67,7 +70,7 @@ class _DeputizationsViewState extends State<DeputizationsView> {
           ),
 
           title: const Text(
-            'Deputizations',
+            'Ownership Requests',
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
 
@@ -75,37 +78,38 @@ class _DeputizationsViewState extends State<DeputizationsView> {
           backgroundColor: Colors.white,
           elevation: 0,
         ),
-        body: BlocBuilder<DeputizationsBloc, DeputizationsState>(
+        body: BlocBuilder<OwnerShipRequestsBloc, OwnerShipRequestsState>(
           builder: (context, state) {
-            if (state is DeputizationsLoading ||
-                state is DeputizationsInitial) {
+            if (state is OwnerShipRequestsLoading ||
+                state is OwnerShipRequestsInitial ||
+                state is AcceptTransferLoading) {
               return ListView.builder(
                 reverse: false,
-                itemCount: 20, // number of shimmer items while loading
+                itemCount: 20,
                 itemBuilder:
-                    (context, index) => const ShimmerDeputizationItem(),
+                    (context, index) => const ShimmerOwnershipRequestItem(),
               );
             }
-            if (state is DeputizationsSuccess && state.deputizations.isEmpty) {
+            if (state is OwnerShipRequestsSuccess && state.requests.isEmpty) {
               return SomethingWrongWidget(
-                title: "No investments found!",
+                title: "No requests found!",
                 svgPath: 'assets/images/search.svg',
                 elevatedButtonWidget: ElevatedButtonWidget(
                   title: "Refresh",
                   onPressed:
-                      () => context.read<DeputizationsBloc>().add(
-                        const GetDeputizationsEvent(refresh: true),
+                      () => context.read<OwnerShipRequestsBloc>().add(
+                        const GetOwnerShipRequestsEvent(refresh: true),
                       ),
                 ),
               );
             }
 
-            if (state is DeputizationsSuccess &&
-                state.deputizations.isNotEmpty) {
+            if (state is OwnerShipRequestsSuccess &&
+                state.requests.isNotEmpty) {
               return RefreshIndicator(
                 onRefresh: () async {
-                  context.read<DeputizationsBloc>().add(
-                    const GetDeputizationsEvent(refresh: true),
+                  context.read<OwnerShipRequestsBloc>().add(
+                    const GetOwnerShipRequestsEvent(refresh: true),
                   );
                 },
                 child: ListView.builder(
@@ -114,40 +118,32 @@ class _DeputizationsViewState extends State<DeputizationsView> {
                   physics: const ClampingScrollPhysics(),
                   itemCount:
                       state.hasReachedMax
-                          ? state.deputizations.length
-                          : state.deputizations.length +
+                          ? state.requests.length
+                          : state.requests.length +
                               (state.isLoadingMore ? 1 : 0),
                   itemBuilder: (context, index) {
-                    if (index >= state.deputizations!.length) {
+                    if (index >= state.requests.length) {
                       return const Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 20.0,
                           vertical: 8,
                         ),
-                        child: ShimmerDeputizationItem(),
+                        child: ShimmerOwnershipRequestItem(),
                       );
                     }
-                    final item = state.deputizations[index];
-                    return DeputizationItem(
-                      userId: item.id.toString(),
-                      createdAt: item.createdAt.toString(),
-                      deputizationContent: item.deputizationContent!,
-                      idNumber: item.idNumber!,
-                      status: item.status!,
-                      userName: item.userName!,
-                      deputizationImage: item.deputizationImage,
-                    );
+                    final item = state.requests[index];
+                    return OwnershipRequestItem(request: item);
                   },
                 ),
               );
             }
-            if (state is DeputizationsFailure) {
-              SomethingWrongWidget(
+            if (state is OwnerShipRequestsFailure) {
+              return SomethingWrongWidget(
                 elevatedButtonWidget: ElevatedButtonWidget(
                   title: "Refresh",
                   onPressed:
-                      () => context.read<DeputizationsBloc>().add(
-                        const GetDeputizationsEvent(refresh: true),
+                      () => context.read<OwnerShipRequestsBloc>().add(
+                        const GetOwnerShipRequestsEvent(refresh: true),
                       ),
                 ),
               );
@@ -157,8 +153,8 @@ class _DeputizationsViewState extends State<DeputizationsView> {
               elevatedButtonWidget: ElevatedButtonWidget(
                 title: "Refresh",
                 onPressed:
-                    () => context.read<DeputizationsBloc>().add(
-                      const GetDeputizationsEvent(refresh: true),
+                    () => context.read<OwnerShipRequestsBloc>().add(
+                      const GetOwnerShipRequestsEvent(refresh: true),
                     ),
               ),
             );

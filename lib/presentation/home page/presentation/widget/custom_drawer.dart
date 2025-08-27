@@ -50,6 +50,13 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           DrawerItem(
+            icon: Icons.assignment,
+            title: 'Ownership Requests',
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kOwnershipRequestsView);
+            },
+          ),
+          DrawerItem(
             icon: Icons.help,
             title: 'Help',
             onTap: () {
